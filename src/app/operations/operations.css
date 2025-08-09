@@ -1,0 +1,20 @@
+.operations-container {
+  padding: 20px;
+}
+
+select {
+  margin: 10px 0;
+  padding: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}

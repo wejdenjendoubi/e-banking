@@ -1,0 +1,23 @@
+<h2>Liste des opérations</h2>
+
+<label for="compte">Choisir un compte :</label>
+<select [formControl]="selectedCompte" id="compte">
+  <option *ngFor="let compte of comptes" [value]="compte">{{ compte }}</option>
+</select>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Montant (TND)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let op of operationsFiltrees">
+      <td>{{ op.date }}</td>
+      <td>{{ op.type }}</td>
+      <td>{{ op.montant }}</td>
+    </tr>
+  </tbody>
+</table>

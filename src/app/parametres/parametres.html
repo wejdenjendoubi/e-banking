@@ -1,0 +1,17 @@
+<h2>Paramètres du compte</h2>
+
+<form [formGroup]="profilForm" (ngSubmit)="onSubmit()" class="settings-form">
+
+  <!--  Changer la photo -->
+  <label for="photo">Changer la photo de profil</label>
+  <input type="file" id="photo" formControlName="photo">
+
+  <!--  Modifier mot de passe -->
+  <label for="currentPassword">Mot de passe actuel</label>
+  <input type="password" id="currentPassword" formControlName="currentPassword">
+
+  <label for="newPassword">Nouveau mot de passe</label>
+  <input type="password" id="newPassword" formControlName="newPassword">
+
+  <button type="submit">Enregistrer</button>
+</form>

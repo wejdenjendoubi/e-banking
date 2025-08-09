@@ -1,0 +1,26 @@
+<h2>Effectuer un virement</h2>
+
+<form [formGroup]="virementForm" (ngSubmit)="onSubmit()">
+
+  <label for="compteSource">Compte source</label>
+  <select id="compteSource" formControlName="compteSource">
+    <option *ngFor="let compte of comptes" [value]="compte.id">{{ compte.nom }}</option>
+  </select>
+
+  <label for="compteDestination">Compte destination</label>
+  <input id="compteDestination" type="text" formControlName="compteDestination" placeholder="Numéro compte bénéficiaire" />
+
+  <label for="montant">Montant (TND)</label>
+  <input id="montant" type="number" formControlName="montant" min="1" />
+
+  <button type="submit" [disabled]="virementForm.invalid">Valider</button>
+
+</form>
+
+<div *ngIf="successMessage" class="success">
+  {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
