@@ -1,16 +1,9 @@
 
 
 <h2>BNA e-banking</h2>
-
-
-
-
-
-
-
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <label for="email">Email</label>
-  <input id="email" type="email" formControlName="email" placeholder="ex: client@bank.tn" />
+  <input id="email" type="email" formControlName="email" placeholder="ex: client@bna.tn" />
 
 
   <div class="error" *ngIf="email?.touched && email?.invalid">
@@ -26,9 +19,9 @@
     <div *ngIf="password?.errors?.['minlength']">il faut entrer plus de  8 caractères</div>
   </div>
 
-  <button type="submit" [disabled]="loginForm.invalid"  >Connexion</button>
+  <!--<button type="submit" [disabled]="loginForm.invalid"  >Connexion</button>-->
 
-  <p-button label="Primary" [rounded]="true" /> 
+  <p-button label="Connexion" [raised]="true" [disabled]="loginForm.invalid"/>
 
 
 </form>

@@ -1,9 +1,13 @@
 import {
-  A,
+  BaseStyle,
+  N,
+  PrimeNG,
+  S,
+  base
+} from "./chunk-FQ2YLH6M.js";
+import {
   C,
   F,
-  FilterMatchMode,
-  G,
   K,
   O,
   PrimeTemplate,
@@ -13,20 +17,13 @@ import {
   SharedModule,
   Tt,
   W,
-  _,
   a,
-  ee,
   f,
-  i,
-  m,
-  p,
-  s,
-  s2,
-  s3,
+  s2 as s,
+  s3 as s2,
   v,
   x,
-  z,
-  z2
+  z
 } from "./chunk-DXOX3PE3.js";
 import {
   CommonModule,
@@ -47,7 +44,6 @@ import {
   ElementRef,
   EventEmitter,
   Injectable,
-  InjectionToken,
   Injector,
   Input,
   NgModule,
@@ -55,7 +51,6 @@ import {
   Output,
   PLATFORM_ID,
   Renderer2,
-  Subject,
   ViewEncapsulation,
   booleanAttribute,
   computed,
@@ -65,8 +60,6 @@ import {
   input,
   numberAttribute,
   setClassMetadata,
-  signal,
-  untracked,
   ɵɵInheritDefinitionFeature,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
@@ -110,836 +103,6 @@ import {
 import {
   __spreadValues
 } from "./chunk-WDMUDEB6.js";
-
-// node_modules/@primeuix/styled/dist/index.mjs
-var rt = Object.defineProperty;
-var st = Object.defineProperties;
-var nt = Object.getOwnPropertyDescriptors;
-var F2 = Object.getOwnPropertySymbols;
-var xe = Object.prototype.hasOwnProperty;
-var be = Object.prototype.propertyIsEnumerable;
-var _e = (e, t, r) => t in e ? rt(e, t, { enumerable: true, configurable: true, writable: true, value: r }) : e[t] = r;
-var g = (e, t) => {
-  for (var r in t || (t = {})) xe.call(t, r) && _e(e, r, t[r]);
-  if (F2) for (var r of F2(t)) be.call(t, r) && _e(e, r, t[r]);
-  return e;
-};
-var $ = (e, t) => st(e, nt(t));
-var v2 = (e, t) => {
-  var r = {};
-  for (var s4 in e) xe.call(e, s4) && t.indexOf(s4) < 0 && (r[s4] = e[s4]);
-  if (e != null && F2) for (var s4 of F2(e)) t.indexOf(s4) < 0 && be.call(e, s4) && (r[s4] = e[s4]);
-  return r;
-};
-var at = s();
-var N = at;
-var k = /{([^}]*)}/g;
-var ne = /(\d+\s+[\+\-\*\/]\s+\d+)/g;
-var ie = /var\([^)]+\)/g;
-function oe(e) {
-  return p(e) ? e.replace(/[A-Z]/g, (t, r) => r === 0 ? t : "." + t.toLowerCase()).toLowerCase() : e;
-}
-function ve(e) {
-  return i(e) && e.hasOwnProperty("$value") && e.hasOwnProperty("$type") ? e.$value : e;
-}
-function dt(e) {
-  return e.replaceAll(/ /g, "").replace(/[^\w]/g, "-");
-}
-function Q(e = "", t = "") {
-  return dt(`${p(e, false) && p(t, false) ? `${e}-` : e}${t}`);
-}
-function ae(e = "", t = "") {
-  return `--${Q(e, t)}`;
-}
-function gt(e = "") {
-  let t = (e.match(/{/g) || []).length, r = (e.match(/}/g) || []).length;
-  return (t + r) % 2 !== 0;
-}
-function Y(e, t = "", r = "", s4 = [], i2) {
-  if (p(e)) {
-    let a2 = e.trim();
-    if (gt(a2)) return;
-    if (z2(a2, k)) {
-      let n = a2.replaceAll(k, (l) => {
-        let c = l.replace(/{|}/g, "").split(".").filter((m2) => !s4.some((d) => z2(m2, d)));
-        return `var(${ae(r, ee(c.join("-")))}${s2(i2) ? `, ${i2}` : ""})`;
-      });
-      return z2(n.replace(ie, "0"), ne) ? `calc(${n})` : n;
-    }
-    return a2;
-  } else if (_(e)) return e;
-}
-function Re(e, t, r) {
-  p(t, false) && e.push(`${t}:${r};`);
-}
-function C2(e, t) {
-  return e ? `${e}{${t}}` : "";
-}
-function le(e, t) {
-  if (e.indexOf("dt(") === -1) return e;
-  function r(n, l) {
-    let o = [], c = 0, m2 = "", d = null, u = 0;
-    for (; c <= n.length; ) {
-      let h = n[c];
-      if ((h === '"' || h === "'" || h === "`") && n[c - 1] !== "\\" && (d = d === h ? null : h), !d && (h === "(" && u++, h === ")" && u--, (h === "," || c === n.length) && u === 0)) {
-        let f2 = m2.trim();
-        f2.startsWith("dt(") ? o.push(le(f2, l)) : o.push(s4(f2)), m2 = "", c++;
-        continue;
-      }
-      h !== void 0 && (m2 += h), c++;
-    }
-    return o;
-  }
-  function s4(n) {
-    let l = n[0];
-    if ((l === '"' || l === "'" || l === "`") && n[n.length - 1] === l) return n.slice(1, -1);
-    let o = Number(n);
-    return isNaN(o) ? n : o;
-  }
-  let i2 = [], a2 = [];
-  for (let n = 0; n < e.length; n++) if (e[n] === "d" && e.slice(n, n + 3) === "dt(") a2.push(n), n += 2;
-  else if (e[n] === ")" && a2.length > 0) {
-    let l = a2.pop();
-    a2.length === 0 && i2.push([l, n]);
-  }
-  if (!i2.length) return e;
-  for (let n = i2.length - 1; n >= 0; n--) {
-    let [l, o] = i2[n], c = e.slice(l + 3, o), m2 = r(c, t), d = t(...m2);
-    e = e.slice(0, l) + d + e.slice(o + 1);
-  }
-  return e;
-}
-var E = (...e) => ue(S.getTheme(), ...e);
-var ue = (e = {}, t, r, s4) => {
-  if (t) {
-    let { variable: i2, options: a2 } = S.defaults || {}, { prefix: n, transform: l } = (e == null ? void 0 : e.options) || a2 || {}, o = z2(t, k) ? t : `{${t}}`;
-    return s4 === "value" || a(s4) && l === "strict" ? S.getTokenValue(t) : Y(o, void 0, n, [i2.excludedKeyRegex], r);
-  }
-  return "";
-};
-function ar(e, ...t) {
-  if (e instanceof Array) {
-    let r = e.reduce((s4, i2, a2) => {
-      var n;
-      return s4 + i2 + ((n = m(t[a2], { dt: E })) != null ? n : "");
-    }, "");
-    return le(r, E);
-  }
-  return m(e, { dt: E });
-}
-function de(e, t = {}) {
-  let r = S.defaults.variable, { prefix: s4 = r.prefix, selector: i2 = r.selector, excludedKeyRegex: a2 = r.excludedKeyRegex } = t, n = [], l = [], o = [{ node: e, path: s4 }];
-  for (; o.length; ) {
-    let { node: m2, path: d } = o.pop();
-    for (let u in m2) {
-      let h = m2[u], f2 = ve(h), p2 = z2(u, a2) ? Q(d) : Q(d, ee(u));
-      if (i(f2)) o.push({ node: f2, path: p2 });
-      else {
-        let y = ae(p2), R2 = Y(f2, p2, s4, [a2]);
-        Re(l, y, R2);
-        let T = p2;
-        s4 && T.startsWith(s4 + "-") && (T = T.slice(s4.length + 1)), n.push(T.replace(/-/g, "."));
-      }
-    }
-  }
-  let c = l.join("");
-  return { value: l, tokens: n, declarations: c, css: C2(i2, c) };
-}
-var b2 = { regex: { rules: { class: { pattern: /^\.([a-zA-Z][\w-]*)$/, resolve(e) {
-  return { type: "class", selector: e, matched: this.pattern.test(e.trim()) };
-} }, attr: { pattern: /^\[(.*)\]$/, resolve(e) {
-  return { type: "attr", selector: `:root${e}`, matched: this.pattern.test(e.trim()) };
-} }, media: { pattern: /^@media (.*)$/, resolve(e) {
-  return { type: "media", selector: e, matched: this.pattern.test(e.trim()) };
-} }, system: { pattern: /^system$/, resolve(e) {
-  return { type: "system", selector: "@media (prefers-color-scheme: dark)", matched: this.pattern.test(e.trim()) };
-} }, custom: { resolve(e) {
-  return { type: "custom", selector: e, matched: true };
-} } }, resolve(e) {
-  let t = Object.keys(this.rules).filter((r) => r !== "custom").map((r) => this.rules[r]);
-  return [e].flat().map((r) => {
-    var s4;
-    return (s4 = t.map((i2) => i2.resolve(r)).find((i2) => i2.matched)) != null ? s4 : this.rules.custom.resolve(r);
-  });
-} }, _toVariables(e, t) {
-  return de(e, { prefix: t == null ? void 0 : t.prefix });
-}, getCommon({ name: e = "", theme: t = {}, params: r, set: s4, defaults: i2 }) {
-  var R2, T, j, O2, M, z3, V;
-  let { preset: a2, options: n } = t, l, o, c, m2, d, u, h;
-  if (s2(a2) && n.transform !== "strict") {
-    let { primitive: L, semantic: te, extend: re } = a2, f2 = te || {}, { colorScheme: K2 } = f2, A2 = v2(f2, ["colorScheme"]), x2 = re || {}, { colorScheme: X } = x2, G2 = v2(x2, ["colorScheme"]), p2 = K2 || {}, { dark: U2 } = p2, B = v2(p2, ["dark"]), y = X || {}, { dark: I } = y, H = v2(y, ["dark"]), W2 = s2(L) ? this._toVariables({ primitive: L }, n) : {}, q2 = s2(A2) ? this._toVariables({ semantic: A2 }, n) : {}, Z = s2(B) ? this._toVariables({ light: B }, n) : {}, pe = s2(U2) ? this._toVariables({ dark: U2 }, n) : {}, fe = s2(G2) ? this._toVariables({ semantic: G2 }, n) : {}, ye = s2(H) ? this._toVariables({ light: H }, n) : {}, Se = s2(I) ? this._toVariables({ dark: I }, n) : {}, [Me, ze] = [(R2 = W2.declarations) != null ? R2 : "", W2.tokens], [Ke, Xe] = [(T = q2.declarations) != null ? T : "", q2.tokens || []], [Ge, Ue] = [(j = Z.declarations) != null ? j : "", Z.tokens || []], [Be, Ie] = [(O2 = pe.declarations) != null ? O2 : "", pe.tokens || []], [He, We] = [(M = fe.declarations) != null ? M : "", fe.tokens || []], [qe, Ze] = [(z3 = ye.declarations) != null ? z3 : "", ye.tokens || []], [Fe, Je] = [(V = Se.declarations) != null ? V : "", Se.tokens || []];
-    l = this.transformCSS(e, Me, "light", "variable", n, s4, i2), o = ze;
-    let Qe = this.transformCSS(e, `${Ke}${Ge}`, "light", "variable", n, s4, i2), Ye = this.transformCSS(e, `${Be}`, "dark", "variable", n, s4, i2);
-    c = `${Qe}${Ye}`, m2 = [.../* @__PURE__ */ new Set([...Xe, ...Ue, ...Ie])];
-    let et = this.transformCSS(e, `${He}${qe}color-scheme:light`, "light", "variable", n, s4, i2), tt = this.transformCSS(e, `${Fe}color-scheme:dark`, "dark", "variable", n, s4, i2);
-    d = `${et}${tt}`, u = [.../* @__PURE__ */ new Set([...We, ...Ze, ...Je])], h = m(a2.css, { dt: E });
-  }
-  return { primitive: { css: l, tokens: o }, semantic: { css: c, tokens: m2 }, global: { css: d, tokens: u }, style: h };
-}, getPreset({ name: e = "", preset: t = {}, options: r, params: s4, set: i2, defaults: a2, selector: n }) {
-  var f2, x2, p2;
-  let l, o, c;
-  if (s2(t) && r.transform !== "strict") {
-    let y = e.replace("-directive", ""), m2 = t, { colorScheme: R2, extend: T, css: j } = m2, O2 = v2(m2, ["colorScheme", "extend", "css"]), d = T || {}, { colorScheme: M } = d, z3 = v2(d, ["colorScheme"]), u = R2 || {}, { dark: V } = u, L = v2(u, ["dark"]), h = M || {}, { dark: te } = h, re = v2(h, ["dark"]), K2 = s2(O2) ? this._toVariables({ [y]: g(g({}, O2), z3) }, r) : {}, A2 = s2(L) ? this._toVariables({ [y]: g(g({}, L), re) }, r) : {}, X = s2(V) ? this._toVariables({ [y]: g(g({}, V), te) }, r) : {}, [G2, U2] = [(f2 = K2.declarations) != null ? f2 : "", K2.tokens || []], [B, I] = [(x2 = A2.declarations) != null ? x2 : "", A2.tokens || []], [H, W2] = [(p2 = X.declarations) != null ? p2 : "", X.tokens || []], q2 = this.transformCSS(y, `${G2}${B}`, "light", "variable", r, i2, a2, n), Z = this.transformCSS(y, H, "dark", "variable", r, i2, a2, n);
-    l = `${q2}${Z}`, o = [.../* @__PURE__ */ new Set([...U2, ...I, ...W2])], c = m(j, { dt: E });
-  }
-  return { css: l, tokens: o, style: c };
-}, getPresetC({ name: e = "", theme: t = {}, params: r, set: s4, defaults: i2 }) {
-  var o;
-  let { preset: a2, options: n } = t, l = (o = a2 == null ? void 0 : a2.components) == null ? void 0 : o[e];
-  return this.getPreset({ name: e, preset: l, options: n, params: r, set: s4, defaults: i2 });
-}, getPresetD({ name: e = "", theme: t = {}, params: r, set: s4, defaults: i2 }) {
-  var c, m2;
-  let a2 = e.replace("-directive", ""), { preset: n, options: l } = t, o = ((c = n == null ? void 0 : n.components) == null ? void 0 : c[a2]) || ((m2 = n == null ? void 0 : n.directives) == null ? void 0 : m2[a2]);
-  return this.getPreset({ name: a2, preset: o, options: l, params: r, set: s4, defaults: i2 });
-}, applyDarkColorScheme(e) {
-  return !(e.darkModeSelector === "none" || e.darkModeSelector === false);
-}, getColorSchemeOption(e, t) {
-  var r;
-  return this.applyDarkColorScheme(e) ? this.regex.resolve(e.darkModeSelector === true ? t.options.darkModeSelector : (r = e.darkModeSelector) != null ? r : t.options.darkModeSelector) : [];
-}, getLayerOrder(e, t = {}, r, s4) {
-  let { cssLayer: i2 } = t;
-  return i2 ? `@layer ${m(i2.order || i2.name || "primeui", r)}` : "";
-}, getCommonStyleSheet({ name: e = "", theme: t = {}, params: r, props: s4 = {}, set: i2, defaults: a2 }) {
-  let n = this.getCommon({ name: e, theme: t, params: r, set: i2, defaults: a2 }), l = Object.entries(s4).reduce((o, [c, m2]) => o.push(`${c}="${m2}"`) && o, []).join(" ");
-  return Object.entries(n || {}).reduce((o, [c, m2]) => {
-    if (i(m2) && Object.hasOwn(m2, "css")) {
-      let d = G(m2.css), u = `${c}-variables`;
-      o.push(`<style type="text/css" data-primevue-style-id="${u}" ${l}>${d}</style>`);
-    }
-    return o;
-  }, []).join("");
-}, getStyleSheet({ name: e = "", theme: t = {}, params: r, props: s4 = {}, set: i2, defaults: a2 }) {
-  var c;
-  let n = { name: e, theme: t, params: r, set: i2, defaults: a2 }, l = (c = e.includes("-directive") ? this.getPresetD(n) : this.getPresetC(n)) == null ? void 0 : c.css, o = Object.entries(s4).reduce((m2, [d, u]) => m2.push(`${d}="${u}"`) && m2, []).join(" ");
-  return l ? `<style type="text/css" data-primevue-style-id="${e}-variables" ${o}>${G(l)}</style>` : "";
-}, createTokens(e = {}, t, r = "", s4 = "", i2 = {}) {
-  let a2 = function(l, o = {}, c = []) {
-    if (c.includes(this.path)) return console.warn(`Circular reference detected at ${this.path}`), { colorScheme: l, path: this.path, paths: o, value: void 0 };
-    c.push(this.path), o.name = this.path, o.binding || (o.binding = {});
-    let m2 = this.value;
-    if (typeof this.value == "string" && k.test(this.value)) {
-      let u = this.value.trim().replace(k, (h) => {
-        var y;
-        let f2 = h.slice(1, -1), x2 = this.tokens[f2];
-        if (!x2) return console.warn(`Token not found for path: ${f2}`), "__UNRESOLVED__";
-        let p2 = x2.computed(l, o, c);
-        return Array.isArray(p2) && p2.length === 2 ? `light-dark(${p2[0].value},${p2[1].value})` : (y = p2 == null ? void 0 : p2.value) != null ? y : "__UNRESOLVED__";
-      });
-      m2 = ne.test(u.replace(ie, "0")) ? `calc(${u})` : u;
-    }
-    return a(o.binding) && delete o.binding, c.pop(), { colorScheme: l, path: this.path, paths: o, value: m2.includes("__UNRESOLVED__") ? void 0 : m2 };
-  }, n = (l, o, c) => {
-    Object.entries(l).forEach(([m2, d]) => {
-      let u = z2(m2, t.variable.excludedKeyRegex) ? o : o ? `${o}.${oe(m2)}` : oe(m2), h = c ? `${c}.${m2}` : m2;
-      i(d) ? n(d, u, h) : (i2[u] || (i2[u] = { paths: [], computed: (f2, x2 = {}, p2 = []) => {
-        if (i2[u].paths.length === 1) return i2[u].paths[0].computed(i2[u].paths[0].scheme, x2.binding, p2);
-        if (f2 && f2 !== "none") for (let y = 0; y < i2[u].paths.length; y++) {
-          let R2 = i2[u].paths[y];
-          if (R2.scheme === f2) return R2.computed(f2, x2.binding, p2);
-        }
-        return i2[u].paths.map((y) => y.computed(y.scheme, x2[y.scheme], p2));
-      } }), i2[u].paths.push({ path: h, value: d, scheme: h.includes("colorScheme.light") ? "light" : h.includes("colorScheme.dark") ? "dark" : "none", computed: a2, tokens: i2 }));
-    });
-  };
-  return n(e, r, s4), i2;
-}, getTokenValue(e, t, r) {
-  var l;
-  let i2 = ((o) => o.split(".").filter((m2) => !z2(m2.toLowerCase(), r.variable.excludedKeyRegex)).join("."))(t), a2 = t.includes("colorScheme.light") ? "light" : t.includes("colorScheme.dark") ? "dark" : void 0, n = [(l = e[i2]) == null ? void 0 : l.computed(a2)].flat().filter((o) => o);
-  return n.length === 1 ? n[0].value : n.reduce((o = {}, c) => {
-    let u = c, { colorScheme: m2 } = u, d = v2(u, ["colorScheme"]);
-    return o[m2] = d, o;
-  }, void 0);
-}, getSelectorRule(e, t, r, s4) {
-  return r === "class" || r === "attr" ? C2(s2(t) ? `${e}${t},${e} ${t}` : e, s4) : C2(e, C2(t != null ? t : ":root", s4));
-}, transformCSS(e, t, r, s4, i2 = {}, a2, n, l) {
-  if (s2(t)) {
-    let { cssLayer: o } = i2;
-    if (s4 !== "style") {
-      let c = this.getColorSchemeOption(i2, n);
-      t = r === "dark" ? c.reduce((m2, { type: d, selector: u }) => (s2(u) && (m2 += u.includes("[CSS]") ? u.replace("[CSS]", t) : this.getSelectorRule(u, l, d, t)), m2), "") : C2(l != null ? l : ":root", t);
-    }
-    if (o) {
-      let c = { name: "primeui", order: "primeui" };
-      i(o) && (c.name = m(o.name, { name: e, type: s4 })), s2(c.name) && (t = C2(`@layer ${c.name}`, t), a2 == null || a2.layerNames(c.name));
-    }
-    return t;
-  }
-  return "";
-} };
-var S = { defaults: { variable: { prefix: "p", selector: ":root", excludedKeyRegex: /^(primitive|semantic|components|directives|variables|colorscheme|light|dark|common|root|states|extend|css)$/gi }, options: { prefix: "p", darkModeSelector: "system", cssLayer: false } }, _theme: void 0, _layerNames: /* @__PURE__ */ new Set(), _loadedStyleNames: /* @__PURE__ */ new Set(), _loadingStyles: /* @__PURE__ */ new Set(), _tokens: {}, update(e = {}) {
-  let { theme: t } = e;
-  t && (this._theme = $(g({}, t), { options: g(g({}, this.defaults.options), t.options) }), this._tokens = b2.createTokens(this.preset, this.defaults), this.clearLoadedStyleNames());
-}, get theme() {
-  return this._theme;
-}, get preset() {
-  var e;
-  return ((e = this.theme) == null ? void 0 : e.preset) || {};
-}, get options() {
-  var e;
-  return ((e = this.theme) == null ? void 0 : e.options) || {};
-}, get tokens() {
-  return this._tokens;
-}, getTheme() {
-  return this.theme;
-}, setTheme(e) {
-  this.update({ theme: e }), N.emit("theme:change", e);
-}, getPreset() {
-  return this.preset;
-}, setPreset(e) {
-  this._theme = $(g({}, this.theme), { preset: e }), this._tokens = b2.createTokens(e, this.defaults), this.clearLoadedStyleNames(), N.emit("preset:change", e), N.emit("theme:change", this.theme);
-}, getOptions() {
-  return this.options;
-}, setOptions(e) {
-  this._theme = $(g({}, this.theme), { options: e }), this.clearLoadedStyleNames(), N.emit("options:change", e), N.emit("theme:change", this.theme);
-}, getLayerNames() {
-  return [...this._layerNames];
-}, setLayerNames(e) {
-  this._layerNames.add(e);
-}, getLoadedStyleNames() {
-  return this._loadedStyleNames;
-}, isStyleNameLoaded(e) {
-  return this._loadedStyleNames.has(e);
-}, setLoadedStyleName(e) {
-  this._loadedStyleNames.add(e);
-}, deleteLoadedStyleName(e) {
-  this._loadedStyleNames.delete(e);
-}, clearLoadedStyleNames() {
-  this._loadedStyleNames.clear();
-}, getTokenValue(e) {
-  return b2.getTokenValue(this.tokens, e, this.defaults);
-}, getCommon(e = "", t) {
-  return b2.getCommon({ name: e, theme: this.theme, params: t, defaults: this.defaults, set: { layerNames: this.setLayerNames.bind(this) } });
-}, getComponent(e = "", t) {
-  let r = { name: e, theme: this.theme, params: t, defaults: this.defaults, set: { layerNames: this.setLayerNames.bind(this) } };
-  return b2.getPresetC(r);
-}, getDirective(e = "", t) {
-  let r = { name: e, theme: this.theme, params: t, defaults: this.defaults, set: { layerNames: this.setLayerNames.bind(this) } };
-  return b2.getPresetD(r);
-}, getCustomPreset(e = "", t, r, s4) {
-  let i2 = { name: e, preset: t, options: this.options, selector: r, params: s4, defaults: this.defaults, set: { layerNames: this.setLayerNames.bind(this) } };
-  return b2.getPreset(i2);
-}, getLayerOrderCSS(e = "") {
-  return b2.getLayerOrder(e, this.options, { names: this.getLayerNames() }, this.defaults);
-}, transformCSS(e = "", t, r = "style", s4) {
-  return b2.transformCSS(e, t, s4, r, this.options, { layerNames: this.setLayerNames.bind(this) }, this.defaults);
-}, getCommonStyleSheet(e = "", t, r = {}) {
-  return b2.getCommonStyleSheet({ name: e, theme: this.theme, params: t, props: r, defaults: this.defaults, set: { layerNames: this.setLayerNames.bind(this) } });
-}, getStyleSheet(e, t, r = {}) {
-  return b2.getStyleSheet({ name: e, theme: this.theme, params: t, props: r, defaults: this.defaults, set: { layerNames: this.setLayerNames.bind(this) } });
-}, onStyleMounted(e) {
-  this._loadingStyles.add(e);
-}, onStyleUpdated(e) {
-  this._loadingStyles.add(e);
-}, onStyleLoaded(e, { name: t }) {
-  this._loadingStyles.size && (this._loadingStyles.delete(t), N.emit(`theme:${t}:load`, e), !this._loadingStyles.size && N.emit("theme:load"));
-} };
-
-// node_modules/@primeuix/styles/dist/base/index.mjs
-var style = "\n    *,\n    ::before,\n    ::after {\n        box-sizing: border-box;\n    }\n\n    /* Non vue overlay animations */\n    .p-connected-overlay {\n        opacity: 0;\n        transform: scaleY(0.8);\n        transition:\n            transform 0.12s cubic-bezier(0, 0, 0.2, 1),\n            opacity 0.12s cubic-bezier(0, 0, 0.2, 1);\n    }\n\n    .p-connected-overlay-visible {\n        opacity: 1;\n        transform: scaleY(1);\n    }\n\n    .p-connected-overlay-hidden {\n        opacity: 0;\n        transform: scaleY(1);\n        transition: opacity 0.1s linear;\n    }\n\n    /* Vue based overlay animations */\n    .p-connected-overlay-enter-from {\n        opacity: 0;\n        transform: scaleY(0.8);\n    }\n\n    .p-connected-overlay-leave-to {\n        opacity: 0;\n    }\n\n    .p-connected-overlay-enter-active {\n        transition:\n            transform 0.12s cubic-bezier(0, 0, 0.2, 1),\n            opacity 0.12s cubic-bezier(0, 0, 0.2, 1);\n    }\n\n    .p-connected-overlay-leave-active {\n        transition: opacity 0.1s linear;\n    }\n\n    /* Toggleable Content */\n    .p-toggleable-content-enter-from,\n    .p-toggleable-content-leave-to {\n        max-height: 0;\n    }\n\n    .p-toggleable-content-enter-to,\n    .p-toggleable-content-leave-from {\n        max-height: 1000px;\n    }\n\n    .p-toggleable-content-leave-active {\n        overflow: hidden;\n        transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);\n    }\n\n    .p-toggleable-content-enter-active {\n        overflow: hidden;\n        transition: max-height 1s ease-in-out;\n    }\n\n    .p-disabled,\n    .p-disabled * {\n        cursor: default;\n        pointer-events: none;\n        user-select: none;\n    }\n\n    .p-disabled,\n    .p-component:disabled {\n        opacity: dt('disabled.opacity');\n    }\n\n    .pi {\n        font-size: dt('icon.size');\n    }\n\n    .p-icon {\n        width: dt('icon.size');\n        height: dt('icon.size');\n    }\n\n    .p-overlay-mask {\n        background: dt('mask.background');\n        color: dt('mask.color');\n        position: fixed;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n    }\n\n    .p-overlay-mask-enter {\n        animation: p-overlay-mask-enter-animation dt('mask.transition.duration') forwards;\n    }\n\n    .p-overlay-mask-leave {\n        animation: p-overlay-mask-leave-animation dt('mask.transition.duration') forwards;\n    }\n\n    @keyframes p-overlay-mask-enter-animation {\n        from {\n            background: transparent;\n        }\n        to {\n            background: dt('mask.background');\n        }\n    }\n    @keyframes p-overlay-mask-leave-animation {\n        from {\n            background: dt('mask.background');\n        }\n        to {\n            background: transparent;\n        }\n    }\n";
-
-// node_modules/primeng/fesm2022/primeng-usestyle.mjs
-var _id = 0;
-var UseStyle = class _UseStyle {
-  document = inject(DOCUMENT);
-  use(css3, options = {}) {
-    let isLoaded = false;
-    let cssRef = css3;
-    let styleRef = null;
-    const {
-      immediate = true,
-      manual = false,
-      name = `style_${++_id}`,
-      id = void 0,
-      media = void 0,
-      nonce = void 0,
-      first = false,
-      props = {}
-    } = options;
-    if (!this.document) return;
-    styleRef = this.document.querySelector(`style[data-primeng-style-id="${name}"]`) || id && this.document.getElementById(id) || this.document.createElement("style");
-    if (!styleRef.isConnected) {
-      cssRef = css3;
-      const HEAD = this.document.head;
-      first && HEAD.firstChild ? HEAD.insertBefore(styleRef, HEAD.firstChild) : HEAD.appendChild(styleRef);
-      A(styleRef, {
-        type: "text/css",
-        media,
-        nonce,
-        "data-primeng-style-id": name
-      });
-    }
-    if (styleRef.textContent !== cssRef) {
-      styleRef.textContent = cssRef;
-    }
-    return {
-      id,
-      name,
-      el: styleRef,
-      css: cssRef
-    };
-  }
-  static ɵfac = function UseStyle_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _UseStyle)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: _UseStyle,
-    factory: _UseStyle.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(UseStyle, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], null, null);
-})();
-
-// node_modules/primeng/fesm2022/primeng-base.mjs
-var base = {
-  _loadedStyleNames: /* @__PURE__ */ new Set(),
-  getLoadedStyleNames() {
-    return this._loadedStyleNames;
-  },
-  isStyleNameLoaded(name) {
-    return this._loadedStyleNames.has(name);
-  },
-  setLoadedStyleName(name) {
-    this._loadedStyleNames.add(name);
-  },
-  deleteLoadedStyleName(name) {
-    this._loadedStyleNames.delete(name);
-  },
-  clearLoadedStyleNames() {
-    this._loadedStyleNames.clear();
-  }
-};
-var css = (
-  /*css*/
-  `
-.p-hidden-accessible {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-.p-hidden-accessible input,
-.p-hidden-accessible select {
-    transform: scale(0);
-}
-
-.p-overflow-hidden {
-    overflow: hidden;
-    padding-right: dt('scrollbar.width');
-}
-`
-);
-var BaseStyle = class _BaseStyle {
-  name = "base";
-  useStyle = inject(UseStyle);
-  theme = void 0;
-  css = void 0;
-  classes = {};
-  inlineStyles = {};
-  load = (style6, options = {}, transform = (cs) => cs) => {
-    const computedStyle = transform(ar`${m(style6, {
-      dt: E
-    })}`);
-    return computedStyle ? this.useStyle.use(G(computedStyle), __spreadValues({
-      name: this.name
-    }, options)) : {};
-  };
-  loadCSS = (options = {}) => {
-    return this.load(this.css, options);
-  };
-  loadTheme = (options = {}, style6 = "") => {
-    return this.load(this.theme, options, (computedStyle = "") => S.transformCSS(options.name || this.name, `${computedStyle}${ar`${style6}`}`));
-  };
-  loadGlobalCSS = (options = {}) => {
-    return this.load(css, options);
-  };
-  loadGlobalTheme = (options = {}, style$1 = "") => {
-    return this.load(style, options, (computedStyle = "") => S.transformCSS(options.name || this.name, `${computedStyle}${ar`${style$1}`}`));
-  };
-  getCommonTheme = (params) => {
-    return S.getCommon(this.name, params);
-  };
-  getComponentTheme = (params) => {
-    return S.getComponent(this.name, params);
-  };
-  getDirectiveTheme = (params) => {
-    return S.getDirective(this.name, params);
-  };
-  getPresetTheme = (preset, selector, params) => {
-    return S.getCustomPreset(this.name, preset, selector, params);
-  };
-  getLayerOrderThemeCSS = () => {
-    return S.getLayerOrderCSS(this.name);
-  };
-  getStyleSheet = (extendedCSS = "", props = {}) => {
-    if (this.css) {
-      const _css = m(this.css, {
-        dt: E
-      });
-      const _style = G(ar`${_css}${extendedCSS}`);
-      const _props = Object.entries(props).reduce((acc, [k2, v3]) => acc.push(`${k2}="${v3}"`) && acc, []).join(" ");
-      return `<style type="text/css" data-primeng-style-id="${this.name}" ${_props}>${_style}</style>`;
-    }
-    return "";
-  };
-  getCommonThemeStyleSheet = (params, props = {}) => {
-    return S.getCommonStyleSheet(this.name, params, props);
-  };
-  getThemeStyleSheet = (params, props = {}) => {
-    let css3 = [S.getStyleSheet(this.name, params, props)];
-    if (this.theme) {
-      const name = this.name === "base" ? "global-style" : `${this.name}-style`;
-      const _css = ar`${m(this.theme, {
-        dt: E
-      })}`;
-      const _style = G(S.transformCSS(name, _css));
-      const _props = Object.entries(props).reduce((acc, [k2, v3]) => acc.push(`${k2}="${v3}"`) && acc, []).join(" ");
-      css3.push(`<style type="text/css" data-primeng-style-id="${name}" ${_props}>${_style}</style>`);
-    }
-    return css3.join("");
-  };
-  static ɵfac = function BaseStyle_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BaseStyle)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: _BaseStyle,
-    factory: _BaseStyle.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BaseStyle, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], null, null);
-})();
-
-// node_modules/primeng/fesm2022/primeng-config.mjs
-var ThemeProvider = class _ThemeProvider {
-  // @todo define type for theme
-  theme = signal(void 0, ...ngDevMode ? [{
-    debugName: "theme"
-  }] : []);
-  csp = signal({
-    nonce: void 0
-  }, ...ngDevMode ? [{
-    debugName: "csp"
-  }] : []);
-  isThemeChanged = false;
-  document = inject(DOCUMENT);
-  baseStyle = inject(BaseStyle);
-  constructor() {
-    effect(() => {
-      N.on("theme:change", (newTheme) => {
-        untracked(() => {
-          this.isThemeChanged = true;
-          this.theme.set(newTheme);
-        });
-      });
-    });
-    effect(() => {
-      const themeValue = this.theme();
-      if (this.document && themeValue) {
-        if (!this.isThemeChanged) {
-          this.onThemeChange(themeValue);
-        }
-        this.isThemeChanged = false;
-      }
-    });
-  }
-  ngOnDestroy() {
-    S.clearLoadedStyleNames();
-    N.clear();
-  }
-  onThemeChange(value) {
-    S.setTheme(value);
-    if (this.document) {
-      this.loadCommonTheme();
-    }
-  }
-  loadCommonTheme() {
-    if (this.theme() === "none") return;
-    if (!S.isStyleNameLoaded("common")) {
-      const {
-        primitive,
-        semantic,
-        global,
-        style: style6
-      } = this.baseStyle.getCommonTheme?.() || {};
-      const styleOptions = {
-        nonce: this.csp?.()?.nonce
-      };
-      this.baseStyle.load(primitive?.css, __spreadValues({
-        name: "primitive-variables"
-      }, styleOptions));
-      this.baseStyle.load(semantic?.css, __spreadValues({
-        name: "semantic-variables"
-      }, styleOptions));
-      this.baseStyle.load(global?.css, __spreadValues({
-        name: "global-variables"
-      }, styleOptions));
-      this.baseStyle.loadGlobalTheme(__spreadValues({
-        name: "global-style"
-      }, styleOptions), style6);
-      S.setLoadedStyleName("common");
-    }
-  }
-  setThemeConfig(config) {
-    const {
-      theme: theme3,
-      csp
-    } = config || {};
-    if (theme3) this.theme.set(theme3);
-    if (csp) this.csp.set(csp);
-  }
-  static ɵfac = function ThemeProvider_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ThemeProvider)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: _ThemeProvider,
-    factory: _ThemeProvider.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ThemeProvider, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], () => [], null);
-})();
-var PrimeNG = class _PrimeNG extends ThemeProvider {
-  ripple = signal(false, ...ngDevMode ? [{
-    debugName: "ripple"
-  }] : []);
-  platformId = inject(PLATFORM_ID);
-  /**
-   * @deprecated Since v20. Use `inputVariant` instead.
-   */
-  inputStyle = signal(null, ...ngDevMode ? [{
-    debugName: "inputStyle"
-  }] : []);
-  inputVariant = signal(null, ...ngDevMode ? [{
-    debugName: "inputVariant"
-  }] : []);
-  overlayAppendTo = signal("self", ...ngDevMode ? [{
-    debugName: "overlayAppendTo"
-  }] : []);
-  overlayOptions = {};
-  csp = signal({
-    nonce: void 0
-  }, ...ngDevMode ? [{
-    debugName: "csp"
-  }] : []);
-  filterMatchModeOptions = {
-    text: [FilterMatchMode.STARTS_WITH, FilterMatchMode.CONTAINS, FilterMatchMode.NOT_CONTAINS, FilterMatchMode.ENDS_WITH, FilterMatchMode.EQUALS, FilterMatchMode.NOT_EQUALS],
-    numeric: [FilterMatchMode.EQUALS, FilterMatchMode.NOT_EQUALS, FilterMatchMode.LESS_THAN, FilterMatchMode.LESS_THAN_OR_EQUAL_TO, FilterMatchMode.GREATER_THAN, FilterMatchMode.GREATER_THAN_OR_EQUAL_TO],
-    date: [FilterMatchMode.DATE_IS, FilterMatchMode.DATE_IS_NOT, FilterMatchMode.DATE_BEFORE, FilterMatchMode.DATE_AFTER]
-  };
-  translation = {
-    startsWith: "Starts with",
-    contains: "Contains",
-    notContains: "Not contains",
-    endsWith: "Ends with",
-    equals: "Equals",
-    notEquals: "Not equals",
-    noFilter: "No Filter",
-    lt: "Less than",
-    lte: "Less than or equal to",
-    gt: "Greater than",
-    gte: "Greater than or equal to",
-    is: "Is",
-    isNot: "Is not",
-    before: "Before",
-    after: "After",
-    dateIs: "Date is",
-    dateIsNot: "Date is not",
-    dateBefore: "Date is before",
-    dateAfter: "Date is after",
-    clear: "Clear",
-    apply: "Apply",
-    matchAll: "Match All",
-    matchAny: "Match Any",
-    addRule: "Add Rule",
-    removeRule: "Remove Rule",
-    accept: "Yes",
-    reject: "No",
-    choose: "Choose",
-    completed: "Completed",
-    upload: "Upload",
-    cancel: "Cancel",
-    pending: "Pending",
-    fileSizeTypes: ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
-    dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-    monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    chooseYear: "Choose Year",
-    chooseMonth: "Choose Month",
-    chooseDate: "Choose Date",
-    prevDecade: "Previous Decade",
-    nextDecade: "Next Decade",
-    prevYear: "Previous Year",
-    nextYear: "Next Year",
-    prevMonth: "Previous Month",
-    nextMonth: "Next Month",
-    prevHour: "Previous Hour",
-    nextHour: "Next Hour",
-    prevMinute: "Previous Minute",
-    nextMinute: "Next Minute",
-    prevSecond: "Previous Second",
-    nextSecond: "Next Second",
-    am: "am",
-    pm: "pm",
-    dateFormat: "mm/dd/yy",
-    firstDayOfWeek: 0,
-    today: "Today",
-    weekHeader: "Wk",
-    weak: "Weak",
-    medium: "Medium",
-    strong: "Strong",
-    passwordPrompt: "Enter a password",
-    emptyMessage: "No results found",
-    searchMessage: "Search results are available",
-    selectionMessage: "{0} items selected",
-    emptySelectionMessage: "No selected item",
-    emptySearchMessage: "No results found",
-    emptyFilterMessage: "No results found",
-    fileChosenMessage: "Files",
-    noFileChosenMessage: "No file chosen",
-    aria: {
-      trueLabel: "True",
-      falseLabel: "False",
-      nullLabel: "Not Selected",
-      star: "1 star",
-      stars: "{star} stars",
-      selectAll: "All items selected",
-      unselectAll: "All items unselected",
-      close: "Close",
-      previous: "Previous",
-      next: "Next",
-      navigation: "Navigation",
-      scrollTop: "Scroll Top",
-      moveTop: "Move Top",
-      moveUp: "Move Up",
-      moveDown: "Move Down",
-      moveBottom: "Move Bottom",
-      moveToTarget: "Move to Target",
-      moveToSource: "Move to Source",
-      moveAllToTarget: "Move All to Target",
-      moveAllToSource: "Move All to Source",
-      pageLabel: "{page}",
-      firstPageLabel: "First Page",
-      lastPageLabel: "Last Page",
-      nextPageLabel: "Next Page",
-      prevPageLabel: "Previous Page",
-      rowsPerPageLabel: "Rows per page",
-      previousPageLabel: "Previous Page",
-      jumpToPageDropdownLabel: "Jump to Page Dropdown",
-      jumpToPageInputLabel: "Jump to Page Input",
-      selectRow: "Row Selected",
-      unselectRow: "Row Unselected",
-      expandRow: "Row Expanded",
-      collapseRow: "Row Collapsed",
-      showFilterMenu: "Show Filter Menu",
-      hideFilterMenu: "Hide Filter Menu",
-      filterOperator: "Filter Operator",
-      filterConstraint: "Filter Constraint",
-      editRow: "Row Edit",
-      saveEdit: "Save Edit",
-      cancelEdit: "Cancel Edit",
-      listView: "List View",
-      gridView: "Grid View",
-      slide: "Slide",
-      slideNumber: "{slideNumber}",
-      zoomImage: "Zoom Image",
-      zoomIn: "Zoom In",
-      zoomOut: "Zoom Out",
-      rotateRight: "Rotate Right",
-      rotateLeft: "Rotate Left",
-      listLabel: "Option List",
-      selectColor: "Select a color",
-      removeLabel: "Remove",
-      browseFiles: "Browse Files",
-      maximizeLabel: "Maximize"
-    }
-  };
-  zIndex = {
-    modal: 1100,
-    overlay: 1e3,
-    menu: 1e3,
-    tooltip: 1100
-  };
-  translationSource = new Subject();
-  translationObserver = this.translationSource.asObservable();
-  getTranslation(key) {
-    return this.translation[key];
-  }
-  setTranslation(value) {
-    this.translation = __spreadValues(__spreadValues({}, this.translation), value);
-    this.translationSource.next(this.translation);
-  }
-  setConfig(config) {
-    const {
-      csp,
-      ripple,
-      inputStyle,
-      inputVariant,
-      theme: theme3,
-      overlayOptions,
-      translation,
-      filterMatchModeOptions,
-      overlayAppendTo
-    } = config || {};
-    if (csp) this.csp.set(csp);
-    if (overlayAppendTo) this.overlayAppendTo.set(overlayAppendTo);
-    if (ripple) this.ripple.set(ripple);
-    if (inputStyle) this.inputStyle.set(inputStyle);
-    if (inputVariant) this.inputVariant.set(inputVariant);
-    if (overlayOptions) this.overlayOptions = overlayOptions;
-    if (translation) this.setTranslation(translation);
-    if (filterMatchModeOptions) this.filterMatchModeOptions = filterMatchModeOptions;
-    if (theme3) this.setThemeConfig({
-      theme: theme3,
-      csp
-    });
-  }
-  static ɵfac = /* @__PURE__ */ (() => {
-    let ɵPrimeNG_BaseFactory;
-    return function PrimeNG_Factory(__ngFactoryType__) {
-      return (ɵPrimeNG_BaseFactory || (ɵPrimeNG_BaseFactory = ɵɵgetInheritedFactory(_PrimeNG)))(__ngFactoryType__ || _PrimeNG);
-    };
-  })();
-  static ɵprov = ɵɵdefineInjectable({
-    token: _PrimeNG,
-    factory: _PrimeNG.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PrimeNG, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], null, null);
-})();
-var PRIME_NG_CONFIG = new InjectionToken("PRIME_NG_CONFIG");
 
 // node_modules/primeng/fesm2022/primeng-basecomponent.mjs
 var BaseComponentStyle = class _BaseComponentStyle extends BaseStyle {
@@ -988,7 +151,7 @@ var BaseComponent = class _BaseComponent {
   get componentStyle() {
     return this["_componentStyle"];
   }
-  attrSelector = s3("pc");
+  attrSelector = s2("pc");
   themeChangeListeners = [];
   _getHostInstance(instance) {
     if (instance) {
@@ -1013,11 +176,11 @@ var BaseComponent = class _BaseComponent {
   ngOnChanges(changes) {
     if (this.document && !isPlatformServer(this.platformId)) {
       const {
-        dt: dt3
+        dt: dt2
       } = changes;
-      if (dt3 && dt3.currentValue) {
-        this._loadScopedThemeStyles(dt3.currentValue);
-        this._themeChangeListener(() => this._loadScopedThemeStyles(dt3.currentValue));
+      if (dt2 && dt2.currentValue) {
+        this._loadScopedThemeStyles(dt2.currentValue);
+        this._themeChangeListener(() => this._loadScopedThemeStyles(dt2.currentValue));
       }
     }
   }
@@ -1049,7 +212,7 @@ var BaseComponent = class _BaseComponent {
         primitive,
         semantic,
         global,
-        style: style6
+        style: style5
       } = this.componentStyle?.getCommonTheme?.() || {};
       this.baseStyle.load(primitive?.css, __spreadValues({
         name: "primitive-variables"
@@ -1062,20 +225,20 @@ var BaseComponent = class _BaseComponent {
       }, this.styleOptions));
       this.baseStyle.loadGlobalTheme(__spreadValues({
         name: "global-style"
-      }, this.styleOptions), style6);
+      }, this.styleOptions), style5);
       S.setLoadedStyleName("common");
     }
     if (!S.isStyleNameLoaded(this.componentStyle?.name) && this.componentStyle?.name) {
       const {
-        css: css3,
-        style: style6
+        css: css2,
+        style: style5
       } = this.componentStyle?.getComponentTheme?.() || {};
-      this.componentStyle?.load(css3, __spreadValues({
+      this.componentStyle?.load(css2, __spreadValues({
         name: `${this.componentStyle?.name}-variables`
       }, this.styleOptions));
       this.componentStyle?.loadTheme(__spreadValues({
         name: `${this.componentStyle?.name}-style`
-      }, this.styleOptions), style6);
+      }, this.styleOptions), style5);
       S.setLoadedStyleName(this.componentStyle?.name);
     }
     if (!S.isStyleNameLoaded("layer-order")) {
@@ -1093,9 +256,9 @@ var BaseComponent = class _BaseComponent {
   }
   _loadScopedThemeStyles(preset) {
     const {
-      css: css3
+      css: css2
     } = this.componentStyle?.getPresetTheme?.(preset, `[${this.attrSelector}]`) || {};
-    const scopedStyle = this.componentStyle?.load(css3, __spreadValues({
+    const scopedStyle = this.componentStyle?.load(css2, __spreadValues({
       name: `${this.attrSelector}-${this.componentStyle?.name}`
     }, this.styleOptions));
     this.scopedStyleEl = scopedStyle?.el;
@@ -1173,13 +336,13 @@ var DomHandler = class _DomHandler {
     if (element && className) {
       if (element.classList) {
         let styles = className.trim().split(" ");
-        for (let i2 = 0; i2 < styles.length; i2++) {
-          element.classList.add(styles[i2]);
+        for (let i = 0; i < styles.length; i++) {
+          element.classList.add(styles[i]);
         }
       } else {
         let styles = className.split(" ");
-        for (let i2 = 0; i2 < styles.length; i2++) {
-          element.className += " " + styles[i2];
+        for (let i = 0; i < styles.length; i++) {
+          element.className += " " + styles[i];
         }
       }
     }
@@ -1220,10 +383,10 @@ var DomHandler = class _DomHandler {
   static index(element) {
     let children = element.parentNode.childNodes;
     let num = 0;
-    for (var i2 = 0; i2 < children.length; i2++) {
-      if (children[i2] == element)
+    for (var i = 0; i < children.length; i++) {
+      if (children[i] == element)
         return num;
-      if (children[i2].nodeType == 1)
+      if (children[i].nodeType == 1)
         num++;
     }
     return -1;
@@ -1231,10 +394,10 @@ var DomHandler = class _DomHandler {
   static indexWithinGroup(element, attributeName) {
     let children = element.parentNode ? element.parentNode.childNodes : [];
     let num = 0;
-    for (var i2 = 0; i2 < children.length; i2++) {
-      if (children[i2] == element)
+    for (var i = 0; i < children.length; i++) {
+      if (children[i] == element)
         return num;
-      if (children[i2].attributes && children[i2].attributes[attributeName] && children[i2].nodeType == 1)
+      if (children[i].attributes && children[i].attributes[attributeName] && children[i].nodeType == 1)
         num++;
     }
     return -1;
@@ -1437,69 +600,69 @@ var DomHandler = class _DomHandler {
     return (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
   }
   static matches(element, selector) {
-    var p2 = Element.prototype;
-    var f2 = p2["matches"] || p2.webkitMatchesSelector || p2["mozMatchesSelector"] || p2["msMatchesSelector"] || function(s4) {
-      return [].indexOf.call(document.querySelectorAll(s4), this) !== -1;
+    var p = Element.prototype;
+    var f2 = p["matches"] || p.webkitMatchesSelector || p["mozMatchesSelector"] || p["msMatchesSelector"] || function(s3) {
+      return [].indexOf.call(document.querySelectorAll(s3), this) !== -1;
     };
     return f2.call(element, selector);
   }
   static getOuterWidth(el, margin) {
     let width = el.offsetWidth;
     if (margin) {
-      let style6 = getComputedStyle(el);
-      width += parseFloat(style6.marginLeft) + parseFloat(style6.marginRight);
+      let style5 = getComputedStyle(el);
+      width += parseFloat(style5.marginLeft) + parseFloat(style5.marginRight);
     }
     return width;
   }
   static getHorizontalPadding(el) {
-    let style6 = getComputedStyle(el);
-    return parseFloat(style6.paddingLeft) + parseFloat(style6.paddingRight);
+    let style5 = getComputedStyle(el);
+    return parseFloat(style5.paddingLeft) + parseFloat(style5.paddingRight);
   }
   static getHorizontalMargin(el) {
-    let style6 = getComputedStyle(el);
-    return parseFloat(style6.marginLeft) + parseFloat(style6.marginRight);
+    let style5 = getComputedStyle(el);
+    return parseFloat(style5.marginLeft) + parseFloat(style5.marginRight);
   }
   static innerWidth(el) {
     let width = el.offsetWidth;
-    let style6 = getComputedStyle(el);
-    width += parseFloat(style6.paddingLeft) + parseFloat(style6.paddingRight);
+    let style5 = getComputedStyle(el);
+    width += parseFloat(style5.paddingLeft) + parseFloat(style5.paddingRight);
     return width;
   }
   static width(el) {
     let width = el.offsetWidth;
-    let style6 = getComputedStyle(el);
-    width -= parseFloat(style6.paddingLeft) + parseFloat(style6.paddingRight);
+    let style5 = getComputedStyle(el);
+    width -= parseFloat(style5.paddingLeft) + parseFloat(style5.paddingRight);
     return width;
   }
   static getInnerHeight(el) {
     let height = el.offsetHeight;
-    let style6 = getComputedStyle(el);
-    height += parseFloat(style6.paddingTop) + parseFloat(style6.paddingBottom);
+    let style5 = getComputedStyle(el);
+    height += parseFloat(style5.paddingTop) + parseFloat(style5.paddingBottom);
     return height;
   }
   static getOuterHeight(el, margin) {
     let height = el.offsetHeight;
     if (margin) {
-      let style6 = getComputedStyle(el);
-      height += parseFloat(style6.marginTop) + parseFloat(style6.marginBottom);
+      let style5 = getComputedStyle(el);
+      height += parseFloat(style5.marginTop) + parseFloat(style5.marginBottom);
     }
     return height;
   }
   static getHeight(el) {
     let height = el.offsetHeight;
-    let style6 = getComputedStyle(el);
-    height -= parseFloat(style6.paddingTop) + parseFloat(style6.paddingBottom) + parseFloat(style6.borderTopWidth) + parseFloat(style6.borderBottomWidth);
+    let style5 = getComputedStyle(el);
+    height -= parseFloat(style5.paddingTop) + parseFloat(style5.paddingBottom) + parseFloat(style5.borderTopWidth) + parseFloat(style5.borderBottomWidth);
     return height;
   }
   static getWidth(el) {
     let width = el.offsetWidth;
-    let style6 = getComputedStyle(el);
-    width -= parseFloat(style6.paddingLeft) + parseFloat(style6.paddingRight) + parseFloat(style6.borderLeftWidth) + parseFloat(style6.borderRightWidth);
+    let style5 = getComputedStyle(el);
+    width -= parseFloat(style5.paddingLeft) + parseFloat(style5.paddingRight) + parseFloat(style5.borderLeftWidth) + parseFloat(style5.borderRightWidth);
     return width;
   }
   static getViewport() {
-    let win = window, d = document, e = d.documentElement, g2 = d.getElementsByTagName("body")[0], w2 = win.innerWidth || e.clientWidth || g2.clientWidth, h = win.innerHeight || e.clientHeight || g2.clientHeight;
-    return { width: w2, height: h };
+    let win = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], w = win.innerWidth || e.clientWidth || g.clientWidth, h = win.innerHeight || e.clientHeight || g.clientHeight;
+    return { width: w, height: h };
   }
   static getOffset(el) {
     var rect = el.getBoundingClientRect();
@@ -1572,8 +735,8 @@ var DomHandler = class _DomHandler {
   }
   static calculateScrollbarWidth(el) {
     if (el) {
-      let style6 = getComputedStyle(el);
-      return el.offsetWidth - el.clientWidth - parseFloat(style6.borderLeftWidth) - parseFloat(style6.borderRightWidth);
+      let style5 = getComputedStyle(el);
+      return el.offsetWidth - el.clientWidth - parseFloat(style5.borderLeftWidth) - parseFloat(style5.borderRightWidth);
     } else {
       if (this.calculatedScrollbarWidth !== null)
         return this.calculatedScrollbarWidth;
@@ -1798,13 +961,13 @@ var DomHandler = class _DomHandler {
     if (this.isElement(element)) {
       const computedStyles = (rule, value) => {
         const styles = element?.$attrs?.[rule] ? [element?.$attrs?.[rule]] : [];
-        return [value].flat().reduce((cv, v3) => {
-          if (v3 !== null && v3 !== void 0) {
-            const type = typeof v3;
+        return [value].flat().reduce((cv, v2) => {
+          if (v2 !== null && v2 !== void 0) {
+            const type = typeof v2;
             if (type === "string" || type === "number") {
-              cv.push(v3);
+              cv.push(v2);
             } else if (type === "object") {
-              const _cv = Array.isArray(v3) ? computedStyles(rule, v3) : Object.entries(v3).map(([_k, _v]) => rule === "style" && (!!_v || _v === 0) ? `${_k.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}:${_v}` : !!_v ? _k : void 0);
+              const _cv = Array.isArray(v2) ? computedStyles(rule, v2) : Object.entries(v2).map(([_k, _v]) => rule === "style" && (!!_v || _v === 0) ? `${_k.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}:${_v}` : !!_v ? _k : void 0);
               cv = _cv.length ? cv.concat(_cv.filter((c) => !!c)) : cv;
             }
           }
@@ -1929,13 +1092,13 @@ var AutoFocusModule = class _AutoFocusModule {
 })();
 
 // node_modules/@primeuix/styles/dist/badge/index.mjs
-var style2 = "\n    .p-badge {\n        display: inline-flex;\n        border-radius: dt('badge.border.radius');\n        align-items: center;\n        justify-content: center;\n        padding: dt('badge.padding');\n        background: dt('badge.primary.background');\n        color: dt('badge.primary.color');\n        font-size: dt('badge.font.size');\n        font-weight: dt('badge.font.weight');\n        min-width: dt('badge.min.width');\n        height: dt('badge.height');\n    }\n\n    .p-badge-dot {\n        width: dt('badge.dot.size');\n        min-width: dt('badge.dot.size');\n        height: dt('badge.dot.size');\n        border-radius: 50%;\n        padding: 0;\n    }\n\n    .p-badge-circle {\n        padding: 0;\n        border-radius: 50%;\n    }\n\n    .p-badge-secondary {\n        background: dt('badge.secondary.background');\n        color: dt('badge.secondary.color');\n    }\n\n    .p-badge-success {\n        background: dt('badge.success.background');\n        color: dt('badge.success.color');\n    }\n\n    .p-badge-info {\n        background: dt('badge.info.background');\n        color: dt('badge.info.color');\n    }\n\n    .p-badge-warn {\n        background: dt('badge.warn.background');\n        color: dt('badge.warn.color');\n    }\n\n    .p-badge-danger {\n        background: dt('badge.danger.background');\n        color: dt('badge.danger.color');\n    }\n\n    .p-badge-contrast {\n        background: dt('badge.contrast.background');\n        color: dt('badge.contrast.color');\n    }\n\n    .p-badge-sm {\n        font-size: dt('badge.sm.font.size');\n        min-width: dt('badge.sm.min.width');\n        height: dt('badge.sm.height');\n    }\n\n    .p-badge-lg {\n        font-size: dt('badge.lg.font.size');\n        min-width: dt('badge.lg.min.width');\n        height: dt('badge.lg.height');\n    }\n\n    .p-badge-xl {\n        font-size: dt('badge.xl.font.size');\n        min-width: dt('badge.xl.min.width');\n        height: dt('badge.xl.height');\n    }\n";
+var style = "\n    .p-badge {\n        display: inline-flex;\n        border-radius: dt('badge.border.radius');\n        align-items: center;\n        justify-content: center;\n        padding: dt('badge.padding');\n        background: dt('badge.primary.background');\n        color: dt('badge.primary.color');\n        font-size: dt('badge.font.size');\n        font-weight: dt('badge.font.weight');\n        min-width: dt('badge.min.width');\n        height: dt('badge.height');\n    }\n\n    .p-badge-dot {\n        width: dt('badge.dot.size');\n        min-width: dt('badge.dot.size');\n        height: dt('badge.dot.size');\n        border-radius: 50%;\n        padding: 0;\n    }\n\n    .p-badge-circle {\n        padding: 0;\n        border-radius: 50%;\n    }\n\n    .p-badge-secondary {\n        background: dt('badge.secondary.background');\n        color: dt('badge.secondary.color');\n    }\n\n    .p-badge-success {\n        background: dt('badge.success.background');\n        color: dt('badge.success.color');\n    }\n\n    .p-badge-info {\n        background: dt('badge.info.background');\n        color: dt('badge.info.color');\n    }\n\n    .p-badge-warn {\n        background: dt('badge.warn.background');\n        color: dt('badge.warn.color');\n    }\n\n    .p-badge-danger {\n        background: dt('badge.danger.background');\n        color: dt('badge.danger.color');\n    }\n\n    .p-badge-contrast {\n        background: dt('badge.contrast.background');\n        color: dt('badge.contrast.color');\n    }\n\n    .p-badge-sm {\n        font-size: dt('badge.sm.font.size');\n        min-width: dt('badge.sm.min.width');\n        height: dt('badge.sm.height');\n    }\n\n    .p-badge-lg {\n        font-size: dt('badge.lg.font.size');\n        min-width: dt('badge.lg.min.width');\n        height: dt('badge.lg.height');\n    }\n\n    .p-badge-xl {\n        font-size: dt('badge.xl.font.size');\n        min-width: dt('badge.xl.min.width');\n        height: dt('badge.xl.height');\n    }\n";
 
 // node_modules/primeng/fesm2022/primeng-badge.mjs
 var theme = (
   /*css*/
   `
-    ${style2}
+    ${style}
 
     /* For PrimeNG (directive)*/
     .p-overlay-badge {
@@ -1956,7 +1119,7 @@ var classes = {
   root: ({
     instance
   }) => ["p-badge p-component", {
-    "p-badge-circle": s2(instance.value()) && String(instance.value()).length === 1,
+    "p-badge-circle": s(instance.value()) && String(instance.value()).length === 1,
     "p-badge-dot": a(instance.value()),
     "p-badge-sm": instance.size() === "small" || instance.badgeSize() === "small",
     "p-badge-lg": instance.size() === "large" || instance.badgeSize() === "large",
@@ -2084,7 +1247,7 @@ var BadgeDirective = class _BadgeDirective extends BaseComponent {
   }
   ngAfterViewInit() {
     super.ngAfterViewInit();
-    this.id = s3("pn_id_") + "_badge";
+    this.id = s2("pn_id_") + "_badge";
     this.renderBadgeContent();
   }
   setValue(element) {
@@ -2371,7 +1534,7 @@ var BadgeModule = class _BadgeModule {
 })();
 
 // node_modules/@primeuix/styles/dist/progressbar/index.mjs
-var style3 = "\n    .p-progressbar {\n        display: block;\n        position: relative;\n        overflow: hidden;\n        height: dt('progressbar.height');\n        background: dt('progressbar.background');\n        border-radius: dt('progressbar.border.radius');\n    }\n\n    .p-progressbar-value {\n        margin: 0;\n        background: dt('progressbar.value.background');\n    }\n\n    .p-progressbar-label {\n        color: dt('progressbar.label.color');\n        font-size: dt('progressbar.label.font.size');\n        font-weight: dt('progressbar.label.font.weight');\n    }\n\n    .p-progressbar-determinate .p-progressbar-value {\n        height: 100%;\n        width: 0%;\n        position: absolute;\n        display: none;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        overflow: hidden;\n        transition: width 1s ease-in-out;\n    }\n\n    .p-progressbar-determinate .p-progressbar-label {\n        display: inline-flex;\n    }\n\n    .p-progressbar-indeterminate .p-progressbar-value::before {\n        content: '';\n        position: absolute;\n        background: inherit;\n        inset-block-start: 0;\n        inset-inline-start: 0;\n        inset-block-end: 0;\n        will-change: inset-inline-start, inset-inline-end;\n        animation: p-progressbar-indeterminate-anim 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;\n    }\n\n    .p-progressbar-indeterminate .p-progressbar-value::after {\n        content: '';\n        position: absolute;\n        background: inherit;\n        inset-block-start: 0;\n        inset-inline-start: 0;\n        inset-block-end: 0;\n        will-change: inset-inline-start, inset-inline-end;\n        animation: p-progressbar-indeterminate-anim-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;\n        animation-delay: 1.15s;\n    }\n\n    @keyframes p-progressbar-indeterminate-anim {\n        0% {\n            inset-inline-start: -35%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n        100% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n    }\n    @-webkit-keyframes p-progressbar-indeterminate-anim {\n        0% {\n            inset-inline-start: -35%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n        100% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n    }\n\n    @keyframes p-progressbar-indeterminate-anim-short {\n        0% {\n            inset-inline-start: -200%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n        100% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n    }\n    @-webkit-keyframes p-progressbar-indeterminate-anim-short {\n        0% {\n            inset-inline-start: -200%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n        100% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n    }\n";
+var style2 = "\n    .p-progressbar {\n        display: block;\n        position: relative;\n        overflow: hidden;\n        height: dt('progressbar.height');\n        background: dt('progressbar.background');\n        border-radius: dt('progressbar.border.radius');\n    }\n\n    .p-progressbar-value {\n        margin: 0;\n        background: dt('progressbar.value.background');\n    }\n\n    .p-progressbar-label {\n        color: dt('progressbar.label.color');\n        font-size: dt('progressbar.label.font.size');\n        font-weight: dt('progressbar.label.font.weight');\n    }\n\n    .p-progressbar-determinate .p-progressbar-value {\n        height: 100%;\n        width: 0%;\n        position: absolute;\n        display: none;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        overflow: hidden;\n        transition: width 1s ease-in-out;\n    }\n\n    .p-progressbar-determinate .p-progressbar-label {\n        display: inline-flex;\n    }\n\n    .p-progressbar-indeterminate .p-progressbar-value::before {\n        content: '';\n        position: absolute;\n        background: inherit;\n        inset-block-start: 0;\n        inset-inline-start: 0;\n        inset-block-end: 0;\n        will-change: inset-inline-start, inset-inline-end;\n        animation: p-progressbar-indeterminate-anim 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;\n    }\n\n    .p-progressbar-indeterminate .p-progressbar-value::after {\n        content: '';\n        position: absolute;\n        background: inherit;\n        inset-block-start: 0;\n        inset-inline-start: 0;\n        inset-block-end: 0;\n        will-change: inset-inline-start, inset-inline-end;\n        animation: p-progressbar-indeterminate-anim-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;\n        animation-delay: 1.15s;\n    }\n\n    @keyframes p-progressbar-indeterminate-anim {\n        0% {\n            inset-inline-start: -35%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n        100% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n    }\n    @-webkit-keyframes p-progressbar-indeterminate-anim {\n        0% {\n            inset-inline-start: -35%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n        100% {\n            inset-inline-start: 100%;\n            inset-inline-end: -90%;\n        }\n    }\n\n    @keyframes p-progressbar-indeterminate-anim-short {\n        0% {\n            inset-inline-start: -200%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n        100% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n    }\n    @-webkit-keyframes p-progressbar-indeterminate-anim-short {\n        0% {\n            inset-inline-start: -200%;\n            inset-inline-end: 100%;\n        }\n        60% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n        100% {\n            inset-inline-start: 107%;\n            inset-inline-end: -8%;\n        }\n    }\n";
 
 // node_modules/primeng/fesm2022/primeng-fluid.mjs
 var _c0 = ["*"];
@@ -2381,7 +1544,7 @@ var classes2 = {
 var FluidStyle = class _FluidStyle extends BaseStyle {
   name = "fluid";
   classes = classes2;
-  theme = style3;
+  theme = style2;
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵFluidStyle_BaseFactory;
     return function FluidStyle_Factory(__ngFactoryType__) {
@@ -2476,7 +1639,7 @@ var FluidModule = class _FluidModule {
 
 // node_modules/primeng/fesm2022/primeng-icons-baseicon.mjs
 var _c02 = ["*"];
-var css2 = (
+var css = (
   /*css*/
   `
 .p-icon {
@@ -2514,7 +1677,7 @@ var css2 = (
 );
 var BaseIconStyle = class _BaseIconStyle extends BaseStyle {
   name = "baseicon";
-  css = css2;
+  css = css;
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵBaseIconStyle_BaseFactory;
     return function BaseIconStyle_Factory(__ngFactoryType__) {
@@ -2958,7 +2121,7 @@ var ArrowDownIcon = class _ArrowDownIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵArrowDownIcon_BaseFactory;
@@ -3108,7 +2271,7 @@ var ArrowLeftIcon = class _ArrowLeftIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵArrowLeftIcon_BaseFactory;
@@ -3218,7 +2381,7 @@ var ArrowUpIcon = class _ArrowUpIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵArrowUpIcon_BaseFactory;
@@ -3284,7 +2447,7 @@ var BanIcon = class _BanIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵBanIcon_BaseFactory;
@@ -3765,7 +2928,7 @@ var ExclamationTriangleIcon = class _ExclamationTriangleIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵExclamationTriangleIcon_BaseFactory;
@@ -3881,7 +3044,7 @@ var EyeSlashIcon = class _EyeSlashIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵEyeSlashIcon_BaseFactory;
@@ -3947,7 +3110,7 @@ var FilterIcon = class _FilterIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵFilterIcon_BaseFactory;
@@ -4011,7 +3174,7 @@ var FilterSlashIcon = class _FilterSlashIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵFilterSlashIcon_BaseFactory;
@@ -4077,7 +3240,7 @@ var HomeIcon = class _HomeIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵHomeIcon_BaseFactory;
@@ -4143,7 +3306,7 @@ var InfoCircleIcon = class _InfoCircleIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵInfoCircleIcon_BaseFactory;
@@ -4251,7 +3414,7 @@ var PencilIcon = class _PencilIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵPencilIcon_BaseFactory;
@@ -4315,7 +3478,7 @@ var PlusIcon = class _PlusIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵPlusIcon_BaseFactory;
@@ -4379,7 +3542,7 @@ var RefreshIcon = class _RefreshIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵRefreshIcon_BaseFactory;
@@ -4445,7 +3608,7 @@ var SearchIcon = class _SearchIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵSearchIcon_BaseFactory;
@@ -4511,7 +3674,7 @@ var SearchMinusIcon = class _SearchMinusIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵSearchMinusIcon_BaseFactory;
@@ -4577,7 +3740,7 @@ var SearchPlusIcon = class _SearchPlusIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵSearchPlusIcon_BaseFactory;
@@ -4643,7 +3806,7 @@ var SortAltIcon = class _SortAltIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵSortAltIcon_BaseFactory;
@@ -4713,7 +3876,7 @@ var SortAmountDownIcon = class _SortAmountDownIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵSortAmountDownIcon_BaseFactory;
@@ -4777,7 +3940,7 @@ var SortAmountUpAltIcon = class _SortAmountUpAltIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵSortAmountUpAltIcon_BaseFactory;
@@ -4841,7 +4004,7 @@ var SpinnerIcon = class _SpinnerIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵSpinnerIcon_BaseFactory;
@@ -4905,7 +4068,7 @@ var StarIcon = class _StarIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵStarIcon_BaseFactory;
@@ -4969,7 +4132,7 @@ var StarFillIcon = class _StarFillIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵStarFillIcon_BaseFactory;
@@ -5033,7 +4196,7 @@ var ThLargeIcon = class _ThLargeIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵThLargeIcon_BaseFactory;
@@ -5141,7 +4304,7 @@ var TimesCircleIcon = class _TimesCircleIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵTimesCircleIcon_BaseFactory;
@@ -5207,7 +4370,7 @@ var TrashIcon = class _TrashIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵTrashIcon_BaseFactory;
@@ -5273,7 +4436,7 @@ var UndoIcon = class _UndoIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵUndoIcon_BaseFactory;
@@ -5339,7 +4502,7 @@ var UploadIcon = class _UploadIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵUploadIcon_BaseFactory;
@@ -5405,7 +4568,7 @@ var WindowMaximizeIcon = class _WindowMaximizeIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵWindowMaximizeIcon_BaseFactory;
@@ -5471,7 +4634,7 @@ var WindowMinimizeIcon = class _WindowMinimizeIcon extends BaseIcon {
   pathId;
   ngOnInit() {
     super.ngOnInit();
-    this.pathId = "url(#" + s3() + ")";
+    this.pathId = "url(#" + s2() + ")";
   }
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵWindowMinimizeIcon_BaseFactory;
@@ -5532,13 +4695,13 @@ var WindowMinimizeIcon = class _WindowMinimizeIcon extends BaseIcon {
 })();
 
 // node_modules/@primeuix/styles/dist/ripple/index.mjs
-var style4 = "\n    .p-ink {\n        display: block;\n        position: absolute;\n        background: dt('ripple.background');\n        border-radius: 100%;\n        transform: scale(0);\n        pointer-events: none;\n    }\n\n    .p-ink-active {\n        animation: ripple 0.4s linear;\n    }\n\n    @keyframes ripple {\n        100% {\n            opacity: 0;\n            transform: scale(2.5);\n        }\n    }\n";
+var style3 = "\n    .p-ink {\n        display: block;\n        position: absolute;\n        background: dt('ripple.background');\n        border-radius: 100%;\n        transform: scale(0);\n        pointer-events: none;\n    }\n\n    .p-ink-active {\n        animation: ripple 0.4s linear;\n    }\n\n    @keyframes ripple {\n        100% {\n            opacity: 0;\n            transform: scale(2.5);\n        }\n    }\n";
 
 // node_modules/primeng/fesm2022/primeng-ripple.mjs
 var theme2 = (
   /*css*/
   `
-    ${style4}
+    ${style3}
     /* For PrimeNG */
     .p-ripple {
         overflow: hidden;
@@ -5634,9 +4797,9 @@ var Ripple = class _Ripple extends BaseComponent {
   }
   getInk() {
     const children = this.el.nativeElement.children;
-    for (let i2 = 0; i2 < children.length; i2++) {
-      if (typeof children[i2].className === "string" && children[i2].className.indexOf("p-ink") !== -1) {
-        return children[i2];
+    for (let i = 0; i < children.length; i++) {
+      if (typeof children[i].className === "string" && children[i].className.indexOf("p-ink") !== -1) {
+        return children[i];
       }
     }
     return null;
@@ -5724,7 +4887,7 @@ var RippleModule = class _RippleModule {
 })();
 
 // node_modules/@primeuix/styles/dist/button/index.mjs
-var style5 = `
+var style4 = `
     .p-button {
         display: inline-flex;
         cursor: pointer;
@@ -6543,7 +5706,7 @@ var classes4 = {
 };
 var ButtonStyle = class _ButtonStyle extends BaseStyle {
   name = "button";
-  theme = style5;
+  theme = style4;
   classes = classes4;
   static ɵfac = /* @__PURE__ */ (() => {
     let ɵButtonStyle_BaseFactory;
@@ -6697,7 +5860,7 @@ var ButtonDirective = class _ButtonDirective extends BaseComponent {
   set buttonProps(val) {
     this._buttonProps = val;
     if (val && typeof val === "object") {
-      Object.entries(val).forEach(([k2, v3]) => this[`_${k2}`] !== v3 && (this[`_${k2}`] = v3));
+      Object.entries(val).forEach(([k, v2]) => this[`_${k}`] !== v2 && (this[`_${k}`] = v2));
     }
   }
   _severity;

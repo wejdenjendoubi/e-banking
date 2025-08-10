@@ -28,7 +28,7 @@ input {
   margin-top: 5px;
 }
 
-button {
+/*button {
   margin-top: 20px;
   width: 100%;
   padding: 12px;
@@ -37,6 +37,10 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}*/
+p-button{
+  display: flex;
+  margin-top: 10px;
 }
 
 .error {
