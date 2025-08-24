@@ -1,20 +1,27 @@
 
-
 .login-container {
   position: relative;
   padding: 20px;
   max-width: 400px;
-  margin: 40px auto;
+  margin: 60px auto;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
   height:500px;
-  background-image: url('/bna.jpg');
+
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-}
 
+
+}
+.form-header{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.login-container img{
+  width: 100%;
+}
 
 
 label {
@@ -40,7 +47,9 @@ input {
 }*/
 p-button{
   display: flex;
-  margin-top: 10px;
+  margin-top: 30px;
+  justify-self: center;
+
 }
 
 .error {
@@ -48,4 +57,13 @@ p-button{
   font-size: 0.9em;
   margin-top: 5px;
 }
+.forgot-password {
+  margin-top: 30px;
+
+  font-size: 14px;
+  color: #043f2b;
+  cursor: pointer;
+}
+
+
 

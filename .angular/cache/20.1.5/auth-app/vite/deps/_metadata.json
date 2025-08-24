@@ -1,73 +1,79 @@
 {
-  "hash": "2c7ad881",
-  "configHash": "2e814082",
+  "hash": "49a7cfa0",
+  "configHash": "ba30afe2",
   "lockfileHash": "7e79bb38",
-  "browserHash": "38909cc5",
+  "browserHash": "9e399d6a",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "ea18b852",
+      "fileHash": "7b9ff429",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "3015365d",
+      "fileHash": "a377bfdd",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "b4ce1dce",
+      "fileHash": "cc3573c6",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "0fcb728b",
+      "fileHash": "f33d0e44",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "ec3dd862",
+      "fileHash": "88af58b5",
       "needsInterop": false
     },
     "zone.js": {
       "src": "../../../../../../node_modules/zone.js/fesm2015/zone.js",
       "file": "zone__js.js",
-      "fileHash": "f9f2eaf6",
+      "fileHash": "ff53c991",
       "needsInterop": true
     },
     "primeng/button": {
       "src": "../../../../../../node_modules/primeng/fesm2022/primeng-button.mjs",
       "file": "primeng_button.js",
-      "fileHash": "aff7cc1a",
+      "fileHash": "3c53b465",
       "needsInterop": false
     },
     "primeng/api": {
       "src": "../../../../../../node_modules/primeng/fesm2022/primeng-api.mjs",
       "file": "primeng_api.js",
-      "fileHash": "74318e33",
+      "fileHash": "70506f1a",
       "needsInterop": false
     },
     "@angular/platform-browser/animations/async": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/animations/async.mjs",
       "file": "@angular_platform-browser_animations_async.js",
-      "fileHash": "bc826889",
+      "fileHash": "edb1bc61",
       "needsInterop": false
     },
     "primeng/config": {
       "src": "../../../../../../node_modules/primeng/fesm2022/primeng-config.mjs",
       "file": "primeng_config.js",
-      "fileHash": "73f596ac",
+      "fileHash": "7bc4bb7a",
       "needsInterop": false
     },
     "@primeuix/themes/aura": {
       "src": "../../../../../../node_modules/@primeuix/themes/dist/aura/index.mjs",
       "file": "@primeuix_themes_aura.js",
-      "fileHash": "7a7ea731",
+      "fileHash": "bdddb43a",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "4977265f",
       "needsInterop": false
     }
   },
@@ -75,20 +81,26 @@
     "browser-K2PBNGZG": {
       "file": "browser-K2PBNGZG.js"
     },
-    "chunk-FQ2YLH6M": {
-      "file": "chunk-FQ2YLH6M.js"
+    "chunk-ZSCS2TEA": {
+      "file": "chunk-ZSCS2TEA.js"
     },
-    "chunk-FQUZDEBM": {
-      "file": "chunk-FQUZDEBM.js"
+    "chunk-QEE5L53N": {
+      "file": "chunk-QEE5L53N.js"
     },
-    "chunk-RLDR6F5T": {
-      "file": "chunk-RLDR6F5T.js"
+    "chunk-CGFL7GYM": {
+      "file": "chunk-CGFL7GYM.js"
     },
-    "chunk-DXOX3PE3": {
-      "file": "chunk-DXOX3PE3.js"
+    "chunk-HC6OXQJT": {
+      "file": "chunk-HC6OXQJT.js"
     },
-    "chunk-3VZO4KYN": {
-      "file": "chunk-3VZO4KYN.js"
+    "chunk-VPXKZK2O": {
+      "file": "chunk-VPXKZK2O.js"
+    },
+    "chunk-4H5UTL4K": {
+      "file": "chunk-4H5UTL4K.js"
+    },
+    "chunk-DBQVMHQU": {
+      "file": "chunk-DBQVMHQU.js"
     },
     "chunk-KBYV2LFA": {
       "file": "chunk-KBYV2LFA.js"

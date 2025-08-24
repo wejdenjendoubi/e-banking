@@ -11,7 +11,7 @@ import {
   s,
   s2,
   z2 as z
-} from "./chunk-DXOX3PE3.js";
+} from "./chunk-VPXKZK2O.js";
 import {
   DOCUMENT,
   Injectable,
@@ -885,4 +885,4 @@ export {
   PRIME_NG_CONFIG,
   providePrimeNG
 };
-//# sourceMappingURL=chunk-FQ2YLH6M.js.map
+//# sourceMappingURL=chunk-ZSCS2TEA.js.map

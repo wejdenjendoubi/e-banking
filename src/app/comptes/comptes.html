@@ -1,0 +1,33 @@
+<div class="compte-container">
+  <h2>Liste des comptes</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="comptes.length > 0; else noComptes">
+    <table>
+      <thead>
+        <tr>
+          <th>Numéro de Compte</th>
+          <th>Agence</th>
+          <th>Utilisateur</th>
+          <th>Nb Opérations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let compte of comptes">
+          <td>{{ compte.numCompte }}</td>
+          <td>{{ compte.agence }}</td>
+          <td>{{ compte.user?.login || 'N/A' }}</td>
+          <td>{{ compte.operations?.length || 0 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noComptes>
+    <p>Aucun compte trouvé.</p>
+  </ng-template>
+</div>
+

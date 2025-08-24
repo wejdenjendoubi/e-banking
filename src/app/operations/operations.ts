@@ -19,7 +19,7 @@ export class OperationsComponent {
   comptes = ['Compte courant', 'Épargne', 'Professionnel'];
   selectedCompte = new FormControl(this.comptes[0]);
 
-  
+
   operations: { [key: string]: Operation[] } = {
     'Compte courant': [
       { date: '2025-08-01', type: 'Débit', montant: 100 },

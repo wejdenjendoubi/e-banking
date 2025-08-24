@@ -1,7 +1,9 @@
 
 
-<h2>BNA e-banking</h2>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form class="login-container "[formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div class="form-header">
+  <img src="bna.png" alt="bna logo">
+</div>
   <label for="email">Email</label>
   <input id="email" type="email" formControlName="email" placeholder="ex: client@bna.tn" />
 
@@ -21,7 +23,20 @@
 
   <!--<button type="submit" [disabled]="loginForm.invalid"  >Connexion</button>-->
 
-  <p-button label="Connexion" [raised]="true" [disabled]="loginForm.invalid"/>
+  <!--<p-button label="Connexion" [raised]="true" [disabled]="loginForm.invalid"  />-->
+    <p-button
+    type="submit"
+    label="Connexion"
+    [raised]="true"
+    [disabled]="loginForm.invalid"
+    (onClick)="onSubmit()">
+  </p-button>
+
+  <div class="forgot-password">
+    <a routerLink="/forgot-password">Mot de passe oublié ?</a>
+  </div>
+
+
 
 
 </form>
