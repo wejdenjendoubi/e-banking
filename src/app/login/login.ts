@@ -21,18 +21,26 @@ export class LoginComponent {
     private readonly http: HttpClient
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+     login: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^\d{8}$/)
+      ]
+    ],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  get email() { return this.loginForm.get('email'); }
+ get login() {
+    return this.loginForm.get('login');
+  }
   get password() { return this.loginForm.get('password'); }
 
  onSubmit() {
   if (this.loginForm.valid) {
     const user = {
-      login: this.loginForm.value.email,
+      login: this.loginForm.value.login,
       password: this.loginForm.value.password
     };
 
@@ -44,8 +52,7 @@ export class LoginComponent {
         if (!res.comptes || res.comptes.length === 0) {
           this.router.navigate(['/home']);
         } else {
-          this.router.navigate(['/home']);
-        }
+          this.router.navigate(['/home']); }
       },
       error: err => console.error('Erreur lors de la connexion', err)
     });

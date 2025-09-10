@@ -1,0 +1,31 @@
+<div class="mondat-container">
+  <h2>Envoyer un Mondat</h2>
+
+  <form [formGroup]="mondatForm" (ngSubmit)="onSubmit()">
+    <label for="compteDestinataire">Compte destinataire</label>
+    <input
+      id="compteDestinataire"
+      formControlName="compteDestinataire"
+      placeholder="ex: 12345678"
+      required
+    />
+
+    <label for="montant">Montant</label>
+    <input
+      id="montant"
+      type="number"
+      formControlName="montant"
+      required
+    />
+
+    <button type="submit" [disabled]="mondatForm.invalid">Envoyer</button>
+  </form>
+
+  <!-- Résultat affichage -->
+  <div *ngIf="resultat">
+    <h3> Mondat envoyé avec succès !</h3>
+    <p><strong>Compte Destinataire:</strong> {{ resultat.compteDestinataire }}</p>
+    <p><strong>Montant:</strong> {{ resultat.montant }} DT</p>
+    <p><strong>Code Retrait:</strong> <span style="color:red">{{ resultat.codeRetrait }}</span></p>
+  </div>
+</div>

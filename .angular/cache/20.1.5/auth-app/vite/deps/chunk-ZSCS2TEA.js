@@ -11,7 +11,7 @@ import {
   s,
   s2,
   z2 as z
-} from "./chunk-2YAFIRGR.js";
+} from "./chunk-VPXKZK2O.js";
 import {
   DOCUMENT,
   Injectable,
@@ -27,7 +27,7 @@ import {
   untracked,
   ɵɵdefineInjectable,
   ɵɵgetInheritedFactory
-} from "./chunk-L5ACDJCF.js";
+} from "./chunk-KBYV2LFA.js";
 import {
   __spreadValues
 } from "./chunk-WDMUDEB6.js";
@@ -885,4 +885,4 @@ export {
   PRIME_NG_CONFIG,
   providePrimeNG
 };
-//# sourceMappingURL=chunk-NBO362PW.js.map
+//# sourceMappingURL=chunk-ZSCS2TEA.js.map

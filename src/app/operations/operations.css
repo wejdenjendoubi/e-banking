@@ -1,11 +1,24 @@
 .operations-container {
   padding: 20px;
-
 }
 
 select {
   margin: 10px 0;
   padding: 5px;
+}
+
+button {
+  margin: 10px 0;
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 table {
@@ -19,4 +32,3 @@ th, td {
   padding: 8px;
   text-align: left;
 }
-

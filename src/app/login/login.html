@@ -1,16 +1,14 @@
+<form class="login-container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-header">
+    <img src="bna.png" alt="bna logo">
+  </div>
 
+  <label for="login">LogIn</label>
+  <input id="login" type="text" formControlName="login" placeholder="ex: 12345678" />
 
-<form class="login-container "[formGroup]="loginForm" (ngSubmit)="onSubmit()">
-<div class="form-header">
-  <img src="bna.png" alt="bna logo">
-</div>
-  <label for="email">Email</label>
-  <input id="email" type="email" formControlName="email" placeholder="ex: client@bna.tn" />
-
-
-  <div class="error" *ngIf="email?.touched && email?.invalid">
-    <div *ngIf="email?.errors?.['required']">L'email est requis</div>
-    <div *ngIf="email?.errors?.['email']">Format email invalide</div>
+  <div class="error" *ngIf="login?.touched && login?.invalid">
+    <div *ngIf="login?.errors?.['required']">Le login est requis</div>
+    <div *ngIf="login?.errors?.['pattern']">Le login doit contenir exactement 8 chiffres</div>
   </div>
 
   <label for="password">Mot de passe</label>
@@ -18,13 +16,10 @@
 
   <div class="error" *ngIf="password?.touched && password?.invalid">
     <div *ngIf="password?.errors?.['required']">Le mot de passe est requis</div>
-    <div *ngIf="password?.errors?.['minlength']">il faut entrer plus de  8 caractères</div>
+    <div *ngIf="password?.errors?.['minlength']">Il faut entrer au moins 8 caractères</div>
   </div>
 
-  <!--<button type="submit" [disabled]="loginForm.invalid"  >Connexion</button>-->
-
-  <!--<p-button label="Connexion" [raised]="true" [disabled]="loginForm.invalid"  />-->
-    <p-button
+  <p-button
     type="submit"
     label="Connexion"
     [raised]="true"
@@ -35,8 +30,4 @@
   <div class="forgot-password">
     <a routerLink="/forgot-password">Mot de passe oublié ?</a>
   </div>
-
-
-
-
 </form>

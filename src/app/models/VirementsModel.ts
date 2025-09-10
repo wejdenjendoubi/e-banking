@@ -1,8 +1,7 @@
 
-export interface VirementsModel{
-  id: number;
-  motif: string;
+export interface VirementsModel {
+  compteSource: string;
+  compteDestination: string;
   montant: number;
-  compteSource?: any;
-  compteBeneficiaire?: any;
+  motif: string;
 }

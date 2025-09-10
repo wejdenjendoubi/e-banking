@@ -1,33 +1,40 @@
 <div class="virement-container">
-  <h2>Effectuer un virement</h2>
-
-  <form [formGroup]="virementForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="compteSource">Compte source</label>
-      <select id="compteSource" formControlName="compteSource">
-        <option *ngFor="let compte of comptes" [value]="compte.id">
-          {{ compte.nom }}
-        </option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="compteDestination">Compte destination</label>
-      <input id="compteDestination" type="text" formControlName="compteDestination" />
-    </div>
-
-    <div class="form-group">
-      <label for="montant">Montant (TND)</label>
-      <input id="montant" type="number" formControlName="montant" min="1" />
-    </div>
-
-    <button type="submit" [disabled]="virementForm.invalid">Valider</button>
-  </form>
-
   <h2>Liste des virements</h2>
+
   <ul>
     <li *ngFor="let v of virementList">
       {{ v.motif }} - {{ v.montant }} TND
     </li>
   </ul>
+
+  <button (click)="toggleForm()">+ Ajouter un virement</button>
+
+  <!-- ✅ formulaire affiché uniquement si showForm = true -->
+  <div *ngIf="showForm" class="form-container">
+    <h2>Effectuer un virement</h2>
+
+    <form [formGroup]="virementForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="compteSource">Compte source</label>
+        <input id="compteSource" formControlName="compteSource" />
+      </div>
+
+      <div class="form-group">
+        <label for="compteDestination">Compte destination</label>
+        <input id="compteDestination" formControlName="compteDestination" />
+      </div>
+
+      <div class="form-group">
+        <label for="montant">Montant</label>
+        <input type="number" id="montant" formControlName="montant" min="1" />
+      </div>
+
+      <div class="form-group">
+        <label for="motif">Motif</label>
+        <input id="motif" formControlName="motif" />
+      </div>
+
+      <button type="submit" [disabled]="virementForm.invalid">Valider</button>
+    </form>
+  </div>
 </div>

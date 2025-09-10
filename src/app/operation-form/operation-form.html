@@ -1,0 +1,28 @@
+<div class="form-container">
+  <h2>Ajouter une opération</h2>
+
+  <form [formGroup]="operationForm" (ngSubmit)="onSubmit()">
+    <label for="compte">Compte</label>
+    <select id="compte" formControlName="compte">
+      <option *ngFor="let c of comptes" [value]="c">{{ c }}</option>
+    </select>
+
+    <label for="type">Type</label>
+    <select id="type" formControlName="type">
+      <option *ngFor="let t of types" [value]="t">{{ t }}</option>
+    </select>
+
+    <label for="montant">Montant</label>
+    <input type="number" id="montant" formControlName="montant" />
+
+    <label for="libelle">Libellé</label>
+    <input type="text" id="libelle" formControlName="libelle" />
+
+    <label for="statut">Statut</label>
+    <select id="statut" formControlName="statut">
+      <option *ngFor="let s of statuts" [value]="s">{{ s }}</option>
+    </select>
+
+    <button type="submit">Ajouter</button>
+  </form>
+</div>

@@ -7,6 +7,8 @@ import { OperationsComponent } from './operations/operations';
 import { VirementsComponent } from './virements/virements';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password';
 import { ComptesComponent } from './comptes/comptes';
+import { OperationFormComponent } from './operation-form/operation-form';
+import { MondatComponent } from './mondat/mondat';
 
 
 
@@ -20,6 +22,8 @@ export const routes: Routes = [
       { path: 'virement', component: VirementsComponent },
       { path: 'parametres', component: ParametresComponent },
       { path: 'operations', component: OperationsComponent },
+      { path: 'operations/ajouter', component: OperationFormComponent },
+      { path: 'mondats', component: MondatComponent },
       { path: 'comptes', component: ComptesComponent },
 
 

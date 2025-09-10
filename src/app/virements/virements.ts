@@ -16,13 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class VirementsComponent {
   virementList: VirementsModel[] = [];
   virementForm: FormGroup;
-  comptes = [
-    { id: '1', nom: 'Compte courant' },
-    { id: '2', nom: 'Compte épargne' }
-  ];
-
-  successMessage = '';
-  errorMessage = '';
+  showForm = false; // ✅ toggle affichage formulaire
 
   constructor(
     private readonly virementService: Virements,
@@ -31,50 +25,37 @@ export class VirementsComponent {
     this.virementForm = this.fb.group({
       compteSource: ['', Validators.required],
       compteDestination: ['', Validators.required],
-      montant: ['', [Validators.required, Validators.min(1)]]
+      montant: ['', [Validators.required, Validators.min(1)]],
+      motif: ['', Validators.required] // ✅ ajouter motif car backend l’attend
     });
 
     this.getAllVirement();
   }
 
-  /**
-   * Soumettre le formulaire
-   */
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
+
   onSubmit() {
     if (this.virementForm.invalid) return;
-
     const formValue: VirementsModel = this.virementForm.value;
-    console.log('Virement en cours :', formValue);
 
     this.virementService.createVirement(formValue).subscribe({
-      next: (response) => {
-        this.successMessage = 'Virement effectué avec succès !';
-        this.errorMessage = '';
+      next: () => {
         this.virementForm.reset();
-        this.getAllVirement(); // recharger la liste
-        console.log('Virement ajouté :', response);
+        this.showForm = false;
+        this.getAllVirement();
       },
-      error: (err) => {
-        this.errorMessage = ' Erreur lors du virement.';
-        this.successMessage = '';
-        console.error('Erreur API :', err);
-      }
+      error: (err) => console.error('Erreur API :', err)
     });
   }
 
-  /**
-   * Récupérer tous les virements
-   */
- getAllVirement() {
-  this.virementService.getAllVirementsData().subscribe({
-    next: (data) => {
-      console.log('Réponse brute backend :', data); // 🔥 très utile
-      this.virementList = data;
-    },
-    error: (err) => {
-      console.error('Erreur lors du chargement des virements :', err.message, err);
-    }
-  });
-}
-
+  getAllVirement() {
+    this.virementService.getAllVirementsData().subscribe({
+      next: (data) => {
+        this.virementList = data;
+      },
+      error: (err) => console.error('Erreur lors du chargement :', err)
+    });
+  }
 }
