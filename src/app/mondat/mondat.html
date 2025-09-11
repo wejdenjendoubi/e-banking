@@ -1,31 +1,27 @@
-<div class="mondat-container">
-  <h2>Envoyer un Mondat</h2>
-
-  <form [formGroup]="mondatForm" (ngSubmit)="onSubmit()">
-    <label for="compteDestinataire">Compte destinataire</label>
-    <input
-      id="compteDestinataire"
-      formControlName="compteDestinataire"
-      placeholder="ex: 12345678"
-      required
-    />
-
-    <label for="montant">Montant</label>
-    <input
-      id="montant"
-      type="number"
-      formControlName="montant"
-      required
-    />
-
-    <button type="submit" [disabled]="mondatForm.invalid">Envoyer</button>
-  </form>
-
-  <!-- Résultat affichage -->
-  <div *ngIf="resultat">
-    <h3> Mondat envoyé avec succès !</h3>
-    <p><strong>Compte Destinataire:</strong> {{ resultat.compteDestinataire }}</p>
-    <p><strong>Montant:</strong> {{ resultat.montant }} DT</p>
-    <p><strong>Code Retrait:</strong> <span style="color:red">{{ resultat.codeRetrait }}</span></p>
+<form [formGroup]="mondatForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Compte émetteur:</label>
+    <input type="text" formControlName="numCompte" />
   </div>
+
+  <div>
+    <label>Compte destinataire:</label>
+    <input type="text" formControlName="compteDestinataire" />
+  </div>
+
+  <div>
+    <label>Montant:</label>
+    <input type="number" formControlName="montant" />
+  </div>
+
+  <button type="submit" [disabled]="!mondatForm.valid">Envoyer</button>
+</form>
+
+<div *ngIf="resultat">
+  <p>Mondat envoyé avec succès !</p>
+  <p>Code de retrait: {{ resultat.codeRetrait }}</p>
+</div>
+
+<div *ngIf="errorMsg">
+  <p style="color:red">{{ errorMsg }}</p>
 </div>
