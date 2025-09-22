@@ -8,14 +8,42 @@
 <div class="dashboard">
   <aside class="sidebar">
     <h2>e-Banking</h2>
-    <ul>
-      <li><a routerLink="/home/comptes">🏦 Comptes</a></li>
-      <li><a routerLink="/home/operations">💳 Opérations</a></li>
-      <li><a routerLink="/home/virement">🔁 Virements</a></li>
-      <li><a routerLink="/home/historique">📄 Historique</a></li>
-      <li><a routerLink="/home/operations-par-compte">📊 Opérations par compte</a></li>
-      <li><a routerLink="/home/mondats">mondats</a></li>
-      <li><a routerLink="/home/parametres">⚙️ Paramètres</a></li>
+     <ul>
+      <li>
+        <a routerLink="/home/comptes">
+          <i class="pi pi-building-columns"></i> Comptes
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home/operations">
+          <i class="pi pi-credit-card" ></i> Opérations
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home/virement">
+          <i class="pi pi-refresh"></i> Virements
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home/historique">
+          <i class="pi pi-file"></i> Historique
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home/operations-par-compte">
+          <i class="pi pi-chart-bar"></i> Opérations par compte
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home/mondats">
+          <i class="pi pi-envelope"></i> Mondats
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home/parametres">
+          <i class="pi  pi-cog"></i> Paramètres
+        </a>
+      </li>
     </ul>
 
   </aside>
@@ -23,5 +51,30 @@
    <main class="main-content">
 
     <router-outlet> </router-outlet>
+
+    <h2>Bienvenue dans votre espace client</h2>
+
+<div *ngIf="comptes.length > 0; else noCompte">
+  <h3>Vos comptes :</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Numéro de compte</th>
+        <th>Solde (TND)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let compte of comptes">
+        <td>{{ compte.numCompte }}</td>
+        <td>{{ compte.solde | number:'1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noCompte>
+  <p>Aucun compte associé à votre profil.</p>
+</ng-template>
+
   </main>
 </div>

@@ -1,15 +1,28 @@
+
 <form [formGroup]="mondatForm" (ngSubmit)="onSubmit()">
   <div>
+
+
+<div class="mondat-container">
+  <h2>Envoyer un mondat</h2>
+   <form [formGroup]="mondatForm" (ngSubmit)="onSubmit()" >
+  <div class="form-group" >
     <label>Compte émetteur:</label>
     <input type="text" formControlName="numCompte" />
   </div>
 
+
   <div>
+
+  <div class="form-group">
     <label>Compte destinataire:</label>
     <input type="text" formControlName="compteDestinataire" />
   </div>
 
+
   <div>
+  <div class="form-group">
+
     <label>Montant:</label>
     <input type="number" formControlName="montant" />
   </div>
@@ -24,4 +37,7 @@
 
 <div *ngIf="errorMsg">
   <p style="color:red">{{ errorMsg }}</p>
+
+
+</div>
 </div>

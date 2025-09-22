@@ -10,7 +10,7 @@ select {
 button {
   margin: 10px 0;
   padding: 6px 12px;
-  background-color: #007bff;
+  background-color: #03A678;
   color: white;
   border: none;
   cursor: pointer;
@@ -18,7 +18,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #047555;
 }
 
 table {

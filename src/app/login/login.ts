@@ -14,6 +14,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+   errorMessage: string | null = null;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -37,25 +38,41 @@ export class LoginComponent {
   }
   get password() { return this.loginForm.get('password'); }
 
- onSubmit() {
-  if (this.loginForm.valid) {
-    const user = {
-      login: this.loginForm.value.login,
-      password: this.loginForm.value.password
-    };
 
-    this.http.post<any>('http://localhost:8081/api/users/login', user).subscribe({
-      next: res => {
-        console.log('Utilisateur connecté ou enregistré', res);
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const user = {
+        login: this.loginForm.value.login,
+        password: this.loginForm.value.password
+      };
 
-        // If user is new (no comptes), go to /home; otherwise redirect to /dashboard
-        if (!res.comptes || res.comptes.length === 0) {
-          this.router.navigate(['/home']);
-        } else {
-          this.router.navigate(['/home']); }
-      },
-      error: err => console.error('Erreur lors de la connexion', err)
-    });
+
+      this.http.post<any>('http://localhost:8081/api/auth/login', user).subscribe({
+        next: res => {
+          console.log('Utilisateur trouvé ', res);
+         //stocker le login dans un local storage
+          localStorage.setItem('userLogin', this.loginForm.value.login);
+
+
+          this.errorMessage = null;
+
+
+          // Redirection après succès
+          this.router.navigate(['/home'], {
+            queryParams: { login: res.login }
+          });
+        },
+        error: err => {
+          console.error('Erreur de connexion ', err);
+          if (err.status === 404) {
+            this.errorMessage = ' Utilisateur introuvable.';
+          } else if (err.status === 401) {
+            this.errorMessage = ' Mot de passe incorrect.';
+          } else {
+            this.errorMessage = 'Une erreur est survenue, réessayez plus tard.';
+          }
+        }
+      });
   }
 }
 }

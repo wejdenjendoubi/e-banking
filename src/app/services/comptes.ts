@@ -23,4 +23,7 @@ export class ComptesService {
   createCompte(compte: CompteModel): Observable<CompteModel> {
     return this.http.post<CompteModel>(this.apiUrl, compte);
   }
+   getComptesByLogin(login: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user/${login}`);
+  }
 }

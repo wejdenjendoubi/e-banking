@@ -22,7 +22,7 @@ export class MondatComponent {
   resultat?: Mondat; // For displaying backend response
   errorMsg?: string;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private readonly fb: FormBuilder, private readonly http: HttpClient) {
     this.mondatForm = this.fb.group({
       numCompte: ['', Validators.required],
       compteDestinataire: ['', Validators.required],
